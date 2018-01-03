@@ -66,7 +66,6 @@ public class Windows extends JPanel {
         SparseMultigraph<Room, Exit> graph = new SparseMultigraph<Room, Exit>();
 
         SearchEngine engine = new SearchEngine(graph);
-        //真正的文件存储位置在这个目录下的 conf\batMapAreas 内。
         engine.setBaseDir(MapperConfig.baseDir);
 
         searchEngine = engine;

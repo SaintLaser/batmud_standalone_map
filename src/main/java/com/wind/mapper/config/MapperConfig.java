@@ -1,7 +1,5 @@
 package com.wind.mapper.config;
 
-import com.wind.mapper.common.Tool;
-
 import java.io.File;
 import java.io.IOException;
 import java.io.InputStream;
@@ -9,10 +7,11 @@ import java.util.Properties;
 
 public class MapperConfig {
 
+    //just set here.
     public static String protocol_end = "@@";
 
     /**
-     * 真正的文件存储位置在这个目录下的 conf\batMapAreas 内
+     * map存放位置
      */
     public static String baseDir;
 
@@ -27,7 +26,7 @@ public class MapperConfig {
     /**
      * socket监听的窗口
      */
-    public static int port = 8081;
+    public static int port;
 
     public static void load() throws IOException {
         //todo
