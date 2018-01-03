@@ -1,11 +1,13 @@
 package com.wind.server;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
 public class Test {
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
 
         Pattern pattern = Pattern.compile("(.*?);;(.*?);;(.*?);;(.*?);;(.*?)@@(.*?)@@(.*)");
 
@@ -22,6 +24,12 @@ public class Test {
             System.out.println("shortDesc\t" + matcher.group(6));
             System.out.println("longDesc\t" + matcher.group(7));
         }
+
+        File directory = new File("");//设定为当前文件夹
+
+            System.out.println(directory.getCanonicalPath());//获取标准的路径
+            System.out.println(directory.getAbsolutePath());//获取绝对路径
+
 
     }
 }

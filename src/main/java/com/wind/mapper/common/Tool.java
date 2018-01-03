@@ -1,4 +1,4 @@
-package com.wind.mapper;
+package com.wind.mapper.common;
 
 
 public class Tool {

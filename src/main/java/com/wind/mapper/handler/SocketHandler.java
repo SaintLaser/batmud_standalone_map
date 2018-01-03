@@ -1,7 +1,7 @@
 package com.wind.mapper.handler;
 
 import com.glaurung.batMap.controller.MapperEngine;
-import com.wind.mapper.Tool;
+import com.wind.mapper.common.Tool;
 import com.wind.mapper.config.MapperConfig;
 
 import java.io.*;

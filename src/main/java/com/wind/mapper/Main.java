@@ -19,7 +19,7 @@ public class Main {
                 JFrame frame = new JFrame();
                 frame.setTitle("standalone mapper");
                 frame.setLayout(null);
-                frame.setContentPane(new Gui());
+                frame.setContentPane(new Windows());
                 frame.setSize(MapperConfig.mainWidth, MapperConfig.mainHeight);
                 frame.setVisible(true);
                 // new TabComponentsDemo().runTest();

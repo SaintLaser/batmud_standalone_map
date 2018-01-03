@@ -1,6 +1,6 @@
 package com.wind.mapper.config;
 
-import com.wind.mapper.Tool;
+import com.wind.mapper.common.Tool;
 
 import java.io.File;
 import java.io.IOException;
@@ -37,7 +37,9 @@ public class MapperConfig {
         mainWidth = Integer.valueOf(p.getProperty("mainWidth"));
         mainHeight = Integer.valueOf(p.getProperty("mainHeight"));
         mainFont = Integer.valueOf(p.getProperty("mainFont"));
-        Tool.p("get config:",baseDir,mainWidth,mainHeight,mainFont);
+        port = Integer.valueOf(p.getProperty("port"));
+
+        Tool.p("get config:",baseDir,port,mainWidth,mainHeight,mainFont);
 
         //创建地图文件的目录 真正的文件存储位置在baseDir目录下的 conf\batMapAreas 内
         File dir = new File(baseDir);

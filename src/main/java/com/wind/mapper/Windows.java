@@ -18,9 +18,9 @@ import javax.swing.JTabbedPane;
 /**
  * 窗口程序
  */
-public class Gui extends JPanel {
+public class Windows extends JPanel {
 
-    public Gui() {
+    public Windows() {
         layoutComponents();
 
         new Thread() {

@@ -1,0 +1,9 @@
+
+通过命令telnet localhost 8081链接到本地服务器后，逐行发送如下消息测试
+
+crimson guild;;$apr1$dF!!_X#W$.kJanwjLtTrWFuyDwDOzA.;;south;;1;;south,north,west,east@@short1@@long1
+crimson guild;;$apr1$dF!!_X#W$5AwaCLHWAX9XI/YyW8s0J1;;east;;1;;north,west,east@@short2@@long2
+crimson guild;;$apr1$dF!!_X#W$oNfLRWqpXKjGE.RTZdQls.;;east;;1;;north,west,east@@short3@@long3
+crimson guild;;$apr1$dF!!_X#W$BXv2yGBd9Vj.2NpB0uVKJ.;;east;;1;;east,west@@short3@@long3
+crimson guild;;$apr1$dF!!_X#W$BXv2yGBd9Vj.2NpB0222.;;north;;1;;east,west@@short4@@long4
+crimson guild;;$apr1$dF!!_X#W$BXv2yGB234234pB0222.;;jump;;1;;east,north@@short5@@long5
