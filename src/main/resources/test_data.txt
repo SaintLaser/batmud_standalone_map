@@ -1,11 +1,18 @@
 
-通过命令telnet localhost 8081链接到本地服务器后，逐行发送如下消息测试
+通过命令telnet localhost 10000链接到本地服务器后，逐行发送如下消息测试
 
-test guild;;$apr1$dF!!_X#W$.kJanwjLtTrWFuyDwDOzA.;;south;;1;;south,north,west,east@@short1@@long1
-test guild;;$apr1$dF!!_X#W$5AwaCLHWAX9XI/YyW8s0J1;;east;;1;;north,west,east@@short2@@long2
-test guild;;$apr1$dF!!_X#W$oNfLRWqpXKjGE.RTZdQls.;;east;;1;;north,west,east@@short3@@long3
 
-no guild;;$apr1$dF!!_X#W$BXv2yGBd9Vj.2NpB0uVKJ.;;east;;1;;east,west@@short3@@long4
-no guild;;$apr1$dF!!_X#W$BXv2yGBd9Vj.2NpB0uVKJ.;;east;;1;;east,west@@short3@@long4
+crimson guild;;$apr1$dF!!_X#W$VFzA/xqqXDoxlRib5VLut.;;east;;1;;Weaponsmith;;The only thing in this smithy
+that is more powerful than the heat
+they are all adorned with weapons of all sizes and types.
+A small sign hangs from the back wall.;;north,west,east;;@@
 
-test guild;;$apr1$dF!!_X#W$BXv2yGBd9Vj.2NpB0uVKJ.;;east;;1;;east,west@@short3@@long4
+crimson guild;;$apr1$dF!!_X#W$5AwaCLHWAX9XI/YyW8s0J1;;west;;1;;Courtyard southeast center;;The courtyard extends north, east, and west from here.  You can
+ring a comforting tattoo.  Torches are set high in the south wall.
+;;north,west,east;;@@
+
+crimson guild;;$apr1$dF!!_X#W$hc9stlQWNzTq6Hsyco3ro0;;north;;1;;Courtyard northeast center;;The courtyard extends south, east, and west from here.  You can
+ring a comforting tattoo.  Torches are set high in the north wall.
+An arched doorway leads north to the arena.
+;;south,west,east;;@@
+

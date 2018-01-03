@@ -32,6 +32,7 @@ import com.glaurung.batMap.vo.Exit;
 import com.glaurung.batMap.vo.Room;
 import com.mythicscape.batclient.interfaces.BatWindow;
 
+import com.wind.mapper.common.Tool;
 import edu.uci.ics.jung.graph.SparseMultigraph;
 import edu.uci.ics.jung.graph.util.EdgeType;
 import edu.uci.ics.jung.graph.util.Pair;
@@ -113,7 +114,7 @@ public class MapperEngine implements ItemListener, ComponentListener {
 
     // areaname;roomUID;exitUsed;indoor boolean;shortDesc;longDesc;exits
     public void moveToRoom( String areaName, String roomUID, String exitUsed, boolean indoors, String shortDesc, String longDesc, Set<String> exits ) {
-        System.out.println("move to r00m : " + ", " + areaName + "," + roomUID + ", " + exitUsed + ", " + indoors + ", " + shortDesc+ ", " + longDesc);
+        Tool.p("move to room : ", areaName , roomUID , exitUsed , indoors , shortDesc, longDesc);
 
         if (this.area == null || ! this.area.getName().equalsIgnoreCase( areaName )) {
             moveToArea( areaName );

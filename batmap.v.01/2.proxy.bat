@@ -1,0 +1,1 @@
+python ./bcproxy-python/proxy.py

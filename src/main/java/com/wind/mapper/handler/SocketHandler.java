@@ -8,6 +8,7 @@ import java.io.*;
 import java.net.ServerSocket;
 import java.net.Socket;
 import java.util.HashSet;
+import java.util.Map;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
@@ -38,12 +39,27 @@ public class SocketHandler implements IHandler{
 
                 BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
                 PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
+                String roomInfo="";
                 String str;
                 while ((str = br.readLine()) != null) {
-                    System.out.println("receive:" + str);
-                    handle(str);
-                    pw.println("ok");
-                    pw.flush();
+                    Tool.p("receive:" ,str,str.contains(MapperConfig.protocol_end));
+
+                    if(str==null || str.trim().equals("")){
+                        continue;
+                    }
+
+                    if(str.contains(MapperConfig.protocol_end)){
+                        //room info组装完毕
+                        roomInfo = roomInfo + str.replaceAll(MapperConfig.protocol_end,"");
+                        handle(roomInfo);
+                        roomInfo = "";
+
+                        pw.println("ok");
+                        pw.flush();
+
+                    }else{
+                        roomInfo = roomInfo + str + "\n";
+                    }
                 }
 
                 br.close();
@@ -55,20 +71,23 @@ public class SocketHandler implements IHandler{
         }
     }
 
-    private Pattern pattern = Pattern.compile("(.*?);;(.*?);;(.*?);;(.*?);;(.*?)@@(.*?)@@(.*)");
+    private Pattern pattern = Pattern.compile("(.*?);;(.*?);;(.*?);;(.*?);;(.*?);;(.*?);;(.*);;",Pattern.DOTALL);
 
     /**
      * @param roomInfo 格式
      *  示例
-     *  arelium;;$apr1$dF!!_X#W$dG7RGdqpERshxk5XnrLDN/;;west;;1;;east@@shortdesc@@longdesc
-     *  crimson guild;;$apr1$dF!!_X#W$kXXkOct/6BkbBsksle6aS/;;north;;1;;south,west,east@@shortdesc@@longdesc
+     *
+    crimson guild;;$apr1$dF!!_X#W$eA6mBDF.Y93f8W7tObZGP1;;west;;1;;Hallway east;;The hallway continues south-north here.  You catch the glint of light on steel
+    from the eastern doorway.  Torchlight falls from sconces set high in the
+    walls.
+    ;;east,north,south;;@@
+
+
      *  规范
-     *  [areaName];;[roomUID];;[exitUsed];;[indoors];;[exits1,exits2]@@[shortDesc]@@[longDesc]
+     *  [areaName];;[roomUID];;[exitUsed];;[indoors];;[shortDesc];;[longDesc];;[exits];;
      */
     public void handle(String roomInfo) {
-        if(roomInfo==null || roomInfo.trim().equals("")){
-            return;
-        }
+        Tool.p("roominfo:",roomInfo);
 
         Matcher matcher = pattern.matcher(roomInfo);
         if(matcher.find()){
@@ -76,16 +95,18 @@ public class SocketHandler implements IHandler{
             String roomUID = matcher.group(2);
             String exittUsed = matcher.group(3);
             boolean indoors = matcher.group(4).equals("1");
-            String exits = matcher.group(5);
-            String shortDesc = matcher.group(6);
-            String longDesc = matcher.group(7);
+            String shortDesc = matcher.group(5);
+            String longDesc = matcher.group(6);
+            String exits = matcher.group(7);
 
             HashSet<String> exitsHash = new HashSet<String>();
             for(String exit : exits.split(",")){
                 exitsHash.add(exit);
             }
 
-            mapperEngine.moveToRoom(areaName, roomUID, exittUsed,indoors, areaName+"\n" + shortDesc,longDesc,exitsHash);
+            mapperEngine.moveToRoom(areaName, roomUID, exittUsed,indoors, shortDesc,longDesc,exitsHash);
+        }else{
+            Tool.p("not match!");
         }
     }
 

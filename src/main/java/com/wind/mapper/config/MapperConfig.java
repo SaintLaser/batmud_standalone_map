@@ -9,6 +9,8 @@ import java.util.Properties;
 
 public class MapperConfig {
 
+    public static String protocol_end = "@@";
+
     /**
      * 真正的文件存储位置在这个目录下的 conf\batMapAreas 内
      */
@@ -39,7 +41,12 @@ public class MapperConfig {
         mainFont = Integer.valueOf(p.getProperty("mainFont"));
         port = Integer.valueOf(p.getProperty("port"));
 
-        Tool.p("get config:",baseDir,port,mainWidth,mainHeight,mainFont);
+        System.out.println("configs: ");
+        System.out.println("baseDir="+baseDir);
+        System.out.println("port="+port);
+        System.out.println("mainWidth="+mainWidth);
+        System.out.println("mainHeight="+mainHeight);
+        System.out.println("mainFont="+mainFont);
 
         //创建地图文件的目录 真正的文件存储位置在baseDir目录下的 conf\batMapAreas 内
         File dir = new File(baseDir);
