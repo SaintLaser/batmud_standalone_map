@@ -52,9 +52,7 @@ import edu.uci.ics.jung.visualization.transform.MutableTransformer;
  */
 public class MapperEngine implements ItemListener, ComponentListener {
 
-    //地图
     SparseMultigraph<Room, Exit> graph;
-    //可视化的试图
     VisualizationViewer<Room, Exit> vv;
     MapperLayout mapperLayout;
     Room currentRoom = null;
@@ -78,11 +76,11 @@ public class MapperEngine implements ItemListener, ComponentListener {
     public MapperEngine() {
         graph = new SparseMultigraph<Room, Exit>();
         mapperLayout = new MapperLayout( graph );
-        mapperLayout.setSize( new Dimension( 500, 500 ) ); //????
+        mapperLayout.setSize( new Dimension( 500, 500 ) );
         vv = new VisualizationViewer<Room, Exit>( mapperLayout );
         pickedState = vv.getPickedVertexState();
         pickedState.addItemListener( this );
-        vv.setPreferredSize( new Dimension( 500, 500 ) ); //????
+        vv.setPreferredSize( new Dimension( 500, 500 ) );
         RenderContext<Room, Exit> rc = vv.getRenderContext();
 
         rc.setEdgeLabelTransformer( new ToStringLabeller<Exit>() );
@@ -115,6 +113,8 @@ public class MapperEngine implements ItemListener, ComponentListener {
 
     // areaname;roomUID;exitUsed;indoor boolean;shortDesc;longDesc;exits
     public void moveToRoom( String areaName, String roomUID, String exitUsed, boolean indoors, String shortDesc, String longDesc, Set<String> exits ) {
+        System.out.println("move to r00m : " + ", " + areaName + "," + roomUID + ", " + exitUsed + ", " + indoors + ", " + shortDesc+ ", " + longDesc);
+
         if (this.area == null || ! this.area.getName().equalsIgnoreCase( areaName )) {
             moveToArea( areaName );
         }
@@ -137,8 +137,6 @@ public class MapperEngine implements ItemListener, ComponentListener {
      * @return true if room created was new, false if it already existed
      */
     public boolean moveToRoom( String roomUID, String exitUsed, String longDesc, String shortDesc, boolean indoors, Set<String> exits ) {
-
-        System.out.println("move to r00m : " + roomUID + ", " + exitUsed + ", " + indoors + ", " + shortDesc);
         Room newRoom = getRoomFromGraph( roomUID );
         boolean newRoomAddedToGraph = false;
         if (newRoom == null) {
@@ -213,7 +211,6 @@ public class MapperEngine implements ItemListener, ComponentListener {
     }
 
     protected void refreshRoomGraphicsAndSetAsCurrent( Room newRoom, String longDesc, String shortDesc, boolean indoors, Set<String> exits ) {
-//System.out.println("newroom: "+newRoom+"\n\tcurrentroom: "+currentRoom+"\n\tpickedRoom: "+pickedRoom);
         if (currentRoom != null) {
             currentRoom.setCurrent( false );
             if (currentRoom.isPicked()) {

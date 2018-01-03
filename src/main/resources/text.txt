@@ -1,0 +1,11 @@
+Prison visitation room.
+You are in the inmate visitation room here you can visit with Arelium
+prisoners. This room looks well used, you wonder how many sad friends and
+family have visited this place just to speak with their loved ones. The room
+is barren except for a guard and a large steel door at the south end of the
+room. A large sign dominates the wall opposite the booths.
+Obvious exit is: west.
+Zolonk the large and friendly looking Guardsman.
+[-99-]arelium;;$apr1$dF!!_X#W$In0mZPIajiSKhWQIgjQSg0;;east;;1;;west
+
+

@@ -24,9 +24,8 @@ import edu.uci.ics.jung.graph.SparseMultigraph;
 
 public class AreaDataPersister {
 
+    //文件后缀
     private static final String SUFFIX = ".batmap";
-    private static final String PATH = "batMapAreas";
-    private static final String NEW_PATH = "conf";
 
 
     public static void save( String basedir, SparseMultigraph<Room, Exit> graph, Layout<Room, Exit> layout ) throws IOException {
@@ -56,9 +55,7 @@ public class AreaDataPersister {
     }
 
     public static List<String> listAreaNames( String basedir ) {
-        File newDir = new File( basedir, NEW_PATH );
-        newDir = new File( newDir, PATH );
-        File folder = newDir;
+        File folder = new File(basedir);
         File[] files = folder.listFiles();
         LinkedList<String> names = new LinkedList<String>();
         for (File file : files) {
@@ -88,12 +85,11 @@ public class AreaDataPersister {
         areaName = areaName.replaceAll( "'", "" );
         areaName = areaName.replaceAll( "/", "" );
         areaName = areaName + SUFFIX;
-        File newDir = new File( basedir, NEW_PATH );
-        newDir = new File( newDir, PATH );
+        File newDir = new File( basedir );
 //		File pathFile = new File(PATH);
         if (! newDir.exists()) {
             if (! newDir.mkdir()) {
-                throw new IOException( PATH + " doesn't exist" );
+                throw new IOException( basedir + " doesn't exist" );
             }
         }
 
@@ -101,33 +97,33 @@ public class AreaDataPersister {
     }
 
     public static void migrateFilesToNewLocation( String basedir ) {
-        File oldDir = new File( PATH );
-        File newDir = new File( basedir, NEW_PATH );
-        newDir = new File( newDir, PATH );
-        if (! oldDir.exists())
-            return;
-        Collection<File> oldDirFiles = FileUtils.listFiles( oldDir, null, false );
-
-        try {
-            if (oldDirFiles.size() == 0) {
-                FileUtils.deleteDirectory( oldDir );
-                return;
-            }
-            FileUtils.forceMkdir( newDir );
-            for (File mapfile : oldDirFiles) {
-                if (! FileUtils.directoryContains( newDir, mapfile )) {
-                    FileUtils.moveFileToDirectory( mapfile, newDir, true );
-                } else {
-                }
-            }
-            //all files moved to new place now, can safely delete old directory
-            if (FileUtils.listFiles( oldDir, null, false ).size() == 0) {
-                FileUtils.deleteDirectory( oldDir );
-            }
-
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
+//        File oldDir = new File( PATH );
+//        File newDir = new File( basedir, NEW_PATH );
+//        newDir = new File( newDir, PATH );
+//        if (! oldDir.exists())
+//            return;
+//        Collection<File> oldDirFiles = FileUtils.listFiles( oldDir, null, false );
+//
+//        try {
+//            if (oldDirFiles.size() == 0) {
+//                FileUtils.deleteDirectory( oldDir );
+//                return;
+//            }
+//            FileUtils.forceMkdir( newDir );
+//            for (File mapfile : oldDirFiles) {
+//                if (! FileUtils.directoryContains( newDir, mapfile )) {
+//                    FileUtils.moveFileToDirectory( mapfile, newDir, true );
+//                } else {
+//                }
+//            }
+//            //all files moved to new place now, can safely delete old directory
+//            if (FileUtils.listFiles( oldDir, null, false ).size() == 0) {
+//                FileUtils.deleteDirectory( oldDir );
+//            }
+//
+//        } catch (IOException e) {
+//            e.printStackTrace();
+//        }
 
 
     }

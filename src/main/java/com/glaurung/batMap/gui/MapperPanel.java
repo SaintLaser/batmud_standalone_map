@@ -1,9 +1,6 @@
 package com.glaurung.batMap.gui;
 
-import java.awt.Color;
-import java.awt.Component;
-import java.awt.Dimension;
-import java.awt.Font;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.awt.event.ComponentEvent;
@@ -22,6 +19,7 @@ import com.glaurung.batMap.controller.MapperEngine;
 import com.glaurung.batMap.vo.Exit;
 import com.glaurung.batMap.vo.Room;
 
+import com.wind.mapper.config.MapperConfig;
 import edu.uci.ics.jung.visualization.VisualizationViewer;
 
 /**
@@ -45,7 +43,7 @@ public class MapperPanel extends JPanel implements ComponentListener, DocumentLi
     private final int BUTTON_HEIGHT = 25;
     private final int BUTTON_WIDTH = 100;
 
-    private final Color BORDER_COLOR = Color.WHITE;
+    private final Color BORDER_COLOR = Color.LIGHT_GRAY;
     private final Color TEXT_COLOR = Color.LIGHT_GRAY;
     private final Color BG_COLOR = Color.BLACK;
 
@@ -56,7 +54,7 @@ public class MapperPanel extends JPanel implements ComponentListener, DocumentLi
     JScrollPane scrollableNotes = new JScrollPane( roomNotes, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER );
     JPanel descPanel = new JPanel();
     private Room room = new Room( "", "" );
-    private Font font = new Font( "Consolas", Font.PLAIN, 14 );
+    private Font font = new Font( "Consolas", Font.PLAIN, MapperConfig.mainFont);
 
     private boolean visibleDescs = true;
 
@@ -101,19 +99,22 @@ public class MapperPanel extends JPanel implements ComponentListener, DocumentLi
 
         descPanel.add( roomShortDesc );
 
-
-        roomLongDesc.setBounds( 0, SHORT_DESC_HEIGHT + BORDERLINE, DESC_WIDTH, LONG_DESC_HEIGHT );
+//
+//        roomLongDesc.setBounds( 0, SHORT_DESC_HEIGHT + BORDERLINE, DESC_WIDTH, LONG_DESC_HEIGHT );
         roomLongDesc.setEditable( false );
         roomLongDesc.setColumns( 25 );
         roomLongDesc.setBorder( new LineBorder( BORDER_COLOR ) );
         roomLongDesc.setAlignmentY( Component.BOTTOM_ALIGNMENT );
         roomLongDesc.setLineWrap( true );
-//		roomLongDesc.setText("Two well-traveled roads cross paths here. One road leads north to a great black castle on a hill. To the west, the road leads to a mountain ridge. Taking the east path will lead you through a forest, and the south path will lead to more familiar areas.\r\n");
+		roomLongDesc.setText("Two well-traveled roads cross paths here. One road leads north to a great black castle on a hill. To the west, the road leads to a mountain ridge. Taking the east path will lead you through a forest, and the south path will lead to more familiar areas.\r\n");
         roomLongDesc.setBackground( BG_COLOR );
         roomLongDesc.setForeground( TEXT_COLOR );
-        roomLongDesc.setFont( font );
-        descPanel.add( roomLongDesc );
         roomLongDesc.setToolTipText( "This is room long description" );
+        roomLongDesc.setFont( font );
+
+        JScrollPane jsp = new JScrollPane(roomLongDesc);
+        jsp.setBounds( 0, SHORT_DESC_HEIGHT + BORDERLINE, DESC_WIDTH, LONG_DESC_HEIGHT );
+        descPanel.add( jsp );
 
         roomExits.setBounds( 0, SHORT_DESC_HEIGHT + BORDERLINE + LONG_DESC_HEIGHT + BORDERLINE, DESC_WIDTH, EXITS_HEIGHT );
         roomExits.setEditable( false );

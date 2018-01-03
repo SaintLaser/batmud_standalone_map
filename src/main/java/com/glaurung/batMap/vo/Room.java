@@ -1,7 +1,5 @@
 package com.glaurung.batMap.vo;
 
-import lombok.Data;
-
 import java.awt.Color;
 import java.io.Serializable;
 import java.util.Collection;
