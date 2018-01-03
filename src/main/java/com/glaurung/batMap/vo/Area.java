@@ -2,8 +2,8 @@ package com.glaurung.batMap.vo;
 
 import java.io.Serializable;
 
-public class Area implements Serializable {
 
+public class Area implements Serializable {
 
     private static final long serialVersionUID = 5397970358054415742L;
     private String name;

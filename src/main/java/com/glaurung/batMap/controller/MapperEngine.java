@@ -47,10 +47,14 @@ import edu.uci.ics.jung.visualization.decorators.ToStringLabeller;
 import edu.uci.ics.jung.visualization.picking.PickedState;
 import edu.uci.ics.jung.visualization.transform.MutableTransformer;
 
+/**
+ *
+ */
 public class MapperEngine implements ItemListener, ComponentListener {
 
-
+    //地图
     SparseMultigraph<Room, Exit> graph;
+    //可视化的试图
     VisualizationViewer<Room, Exit> vv;
     MapperLayout mapperLayout;
     Room currentRoom = null;
@@ -109,7 +113,7 @@ public class MapperEngine implements ItemListener, ComponentListener {
         vv.setPreferredSize( dimension );
     }
 
-    //areaname;roomUID;exitUsed;indoor boolean;shortDesc;longDesc;exits
+    // areaname;roomUID;exitUsed;indoor boolean;shortDesc;longDesc;exits
     public void moveToRoom( String areaName, String roomUID, String exitUsed, boolean indoors, String shortDesc, String longDesc, Set<String> exits ) {
         if (this.area == null || ! this.area.getName().equalsIgnoreCase( areaName )) {
             moveToArea( areaName );
@@ -117,7 +121,6 @@ public class MapperEngine implements ItemListener, ComponentListener {
 
         moveToRoom( roomUID, exitUsed, longDesc, shortDesc, indoors, exits );
         setRoomDescsForRoom( currentRoom, longDesc, shortDesc, indoors, exits );
-
     }
 
 
@@ -134,7 +137,8 @@ public class MapperEngine implements ItemListener, ComponentListener {
      * @return true if room created was new, false if it already existed
      */
     public boolean moveToRoom( String roomUID, String exitUsed, String longDesc, String shortDesc, boolean indoors, Set<String> exits ) {
-//		System.out.println(roomUID);
+
+        System.out.println("move to r00m : " + roomUID + ", " + exitUsed + ", " + indoors + ", " + shortDesc);
         Room newRoom = getRoomFromGraph( roomUID );
         boolean newRoomAddedToGraph = false;
         if (newRoom == null) {
@@ -229,6 +233,9 @@ public class MapperEngine implements ItemListener, ComponentListener {
      * @param areaName name for area, or pass null if leaving area into outerworld or such.
      */
     protected void moveToArea( String areaName ) {
+
+        //todo
+        System.out.println("move to area " + areaName);
 
         if (areaName == null) {
             clearExtraCurrentAndChosenValuesFromRooms();

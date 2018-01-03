@@ -11,12 +11,20 @@ import java.io.ObjectOutputStream;
 
 import com.glaurung.batMap.vo.GuiData;
 
+/**
+ * 数据持久化
+ */
 public class GuiDataPersister {
 
     private final static String FILENAME = "batMap.conf";
     private final static String DIRNAME = "conf";
 
-
+    /**
+     * 保存数据
+     * @param baseDir
+     * @param location
+     * @param size
+     */
     public static void save( String baseDir, Point location, Dimension size ) {
         GuiData data = new GuiData( location, size );
         FileOutputStream fileOutputStream;

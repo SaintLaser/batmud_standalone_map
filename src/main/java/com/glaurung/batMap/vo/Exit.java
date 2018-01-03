@@ -7,6 +7,7 @@ public class Exit implements Serializable {
 
     private static final long serialVersionUID = 3983564665752135097L;
     private String exit;
+    //方向简称
     private String compassDir;
     private boolean currentExit;
     public final String TELEPORT = "teleport";

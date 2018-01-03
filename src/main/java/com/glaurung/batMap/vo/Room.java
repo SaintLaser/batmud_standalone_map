@@ -1,5 +1,7 @@
 package com.glaurung.batMap.vo;
 
+import lombok.Data;
+
 import java.awt.Color;
 import java.io.Serializable;
 import java.util.Collection;
@@ -16,6 +18,7 @@ public class Room implements Serializable {
     private boolean areaEntrance = false;
     private boolean current = false;
     private boolean drawn = false;
+    //所属区域
     private Area area;
     private boolean picked = false;
     Set<String> exits = new HashSet<String>();

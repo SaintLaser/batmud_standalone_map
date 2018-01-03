@@ -23,7 +23,8 @@ public class SearchTest1 {
 
 
         SearchEngine engine = new SearchEngine( graph );
-        engine.setBaseDir( "C:\\Users\\lauri/batclient" );
+        //真正的文件存储位置在这个目录下的 conf\batMapAreas 内。
+        engine.setBaseDir( "C:\\Users\\wind\\batclient\\" );
         frame.getContentPane().add( new SearchPanel( engine ) );
         frame.setSize( 1200, 800 );
         frame.setVisible( true );

@@ -1,4 +1,4 @@
-package com.wind.server.tcp;
+package com.tcp;
 
 import lombok.extern.slf4j.Slf4j;
 import java.io.*;
