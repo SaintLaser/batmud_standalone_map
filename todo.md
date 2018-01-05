@@ -1,22 +1,26 @@
 
 ### aim
 
-run a standalone/accept remote data mapper app
+run a standalone/accept remote data mapper app. it's ok.
 
-### steps
+### todo
 
-whats go on?
+#### 20180105
 
-### notes
+1. realm map支持，数据参考http://pupunen.net/hg/maputils
 
-1 切换area的时候进行保存
+2. 去除proxy向client发送的roominfo、code信息
 
-#### JUNG
+3. 切换启动顺序为proxy、mapper；支持mapper程序的自动重连(可随意开关mapper程序)
 
-http://jung.sourceforge.net/site/index.html
-http://jung.sourceforge.net/doc/api/index.html
+4. 查看proxy的各类code信息；能否存储怪信息 
 
 
-JUNG the Java Universal Network/Graph Framework--is a software library that provides a common and extendible language for the modeling, analysis, and visualization of data that can be represented as a graph or network. 
+
+
+
+
+
+
 
 
