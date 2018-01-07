@@ -1,7 +1,17 @@
-# batmapper
+
+### desc
+
+based on batmapper(https://github.com/lauriholmas/batmapper.git) and bcproxy(https://github.com/zither/bcproxy-python.git) ,  building a standalone mapper/realmMap for common mud client to play batmud(http://www.bat.org/).
+
+pls go into the directory 'batmap.v.02' and follow some directions.
+
+not pretty code and structure exists now, and maybe i will Refactoring it later. i can using it to play now :D
+
+
+### batmapper
 This repository contains code to build the batmapper plugin for batclient. ( http://www.bat.org/play/batclient )
 
-# How to build & run it locally #
+### How to build & run it locally #
 ```
 mvn clean install    
 
