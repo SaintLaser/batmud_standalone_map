@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>2222</title>
+
+    <script type="text/javascript" src="lib/jquery-1.12.4.min.js"></script>
+    <script type="text/javascript">
+	  var ws = new WebSocket('ws://localhost:10001/location');
+
+		  $(function(){
+		  	$("#cc").click(function(){
+		  		window.location = "./test.html";
+		  	});
+		  })
+    </script>
+</head>
+<body>
+<input type="text" id="x">
+<input type="text" id="y">
+<input type="submit" value="Go" id="cc">
+<div id="char" style="background-color:black; position:absolute; width:8px; height:15px;display:none " draggable="true">
+    <img src="resource/m1.jpg" style=" width: 100%; height: 100%;objec-fit: cover;">
+</div>
+</body>
+</html>

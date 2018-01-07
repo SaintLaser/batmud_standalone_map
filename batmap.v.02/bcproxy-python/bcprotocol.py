@@ -7,6 +7,12 @@
 import sys
 import colortrans
 import socket
+from flask import Flask
+from flask_sockets import Sockets
+import random
+import time
+import thread
+import re
 
 S_TEXT = 0
 S_ESC = 1
@@ -19,6 +25,41 @@ S_IAC = 7
 
 MAPPER_ADDRESS="localhost"
 MAPPER_PORT=10000
+
+############################ start websocket here
+ws_handlers =[]
+app = Flask(__name__)
+sockets = Sockets(app)
+websocket_port=10001
+
+# 地址解析
+pattern=re.compile(r'.*?Loc:.*?\[(\d+,\d+)\] in .*? \b((?:Lucentium|Desolathya|Rothikgen|Laenor|Furnachia)).*?',flags=re.S)
+
+@sockets.route('/location')
+def echo_socket(ws):
+    global ws_handlers
+    print "connected!"
+    ws_handlers = [1]
+    ws_handlers[0] = ws
+    
+    print 'len connected ',len(ws_handlers)
+    while not ws.closed:
+        message = ws.receive()
+        print "receive:" , message
+
+    print 'sockets disconnected!'  
+    ws_handlers = []  
+
+## start websocket
+def startWebsocket():
+    from gevent import pywsgi
+    from geventwebsocket.handler import WebSocketHandler
+    server = pywsgi.WSGIServer(('', websocket_port), app, handler_class=WebSocketHandler)
+    server.serve_forever()
+    print "websocket listen at {}".format(websocket_port)
+
+thread.start_new_thread(startWebsocket, ())  
+############################### end of websocket
 
 print "Connect to mapper at {}:{}".format(MAPPER_ADDRESS, MAPPER_PORT)
 
@@ -169,8 +210,16 @@ class Parser:
             return exp.content
 
         if exp.code == "10":
+
+            ## 查看是否能拿到realm map坐标
+            match = pattern.match(exp.content)
+            if match and (len(ws_handlers) > 0):
+                # 向页面发送坐标
+                print 'send location ', match.group(2)+ ","+match.group(1)
+                ws_handlers[0].send(match.group(2)+ ","+match.group(1))
+
             if exp.argu == "spec_battle" and self.options.enable_combat_plugin:
-                return "[-10-]" + exp.content.replace("\n", " ").strip() + "\r\n"
+                return "[10]" + exp.content.replace("\n", " ").strip() + "\r\n"
             elif exp.argu == "spec_prompt":
                 return exp.content.strip() +"\r\n"
             elif exp.content == "NoMapSupport":
@@ -196,6 +245,7 @@ class Parser:
                 room = exp.content.split(";;")
 
                 ### wind 201801, add code to send socket
+                print ";;".join(room[1:]) + "@@\n"
                 mysocket.send(";;".join(room[1:]) + "@@\n")
 
 

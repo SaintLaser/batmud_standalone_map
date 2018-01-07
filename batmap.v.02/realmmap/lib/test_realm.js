@@ -1,4 +1,7 @@
 $(function () {
+    console.log('start realm map......')
+
+    var WebSocketUrl = "ws://localhost:10001/location"
 
     //define the char div size. 基本delta的多少倍？
     var multiple = 3; //
@@ -48,6 +51,7 @@ $(function () {
 
     //移动查内姆到指定的行列
     function move2ColRow(col,row) {
+        console.log('start to move ',col,row)
         //计算位置
         var x = startx + (col-1)*deltax + dx;
         var y = starty + (row-1)*deltay + dy;
@@ -85,12 +89,30 @@ $(function () {
         move2ColRow(col,row);
     });
 
-    //websocket
-    var socket = io();
-    socket.emit('chat message', $('#m').val());
+    //luce mapfile 15,397
+    var ws = new WebSocket(WebSocketUrl);
 
-    socket.on('chat message', function(msg){
-        console.log("recv :", msg);
-    });
+    ws.onopen = function () {
+        console.log('ws onopen');
+        ws.send('i am client ');
+    };
+
+    ws.onmessage = function (e) {
+        console.log('receive location: ' + e.data);
+
+        //数据格式 Lucentium,397,15
+        // 需要转移到 15行，397列
+        var datas = e.data.split(",")
+
+        //is this map fit?
+        if( datas[0] != map_name ){
+            console.log('not this map, jump to' , map_pages[datas[0]])
+            if( map_pages[datas[0]] != null){
+                window.location = map_pages[datas[0]];
+            }
+        }
+
+        move2ColRow(parseInt(datas[1]), parseInt(datas[2]));
+    };
 
 })

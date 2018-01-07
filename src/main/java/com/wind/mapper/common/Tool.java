@@ -8,9 +8,9 @@ public class Tool {
      * so,just a simple test tool
      */
     public static void p(Object ...args){
-//        for( Object arg : args ){
-//            System.out.print( arg.toString() + ", ");
-//        }
-//        System.out.println();
+        for( Object arg : args ){
+            System.out.print( arg.toString() + ", ");
+        }
+        System.out.println();
     }
 }

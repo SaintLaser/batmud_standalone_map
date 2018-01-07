@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+ <meta charset="utf-8">
+ <title>Renardy</title>
+ <script type="text/javascript" src="util.js"></script>
+ <style type="text/css">
+  <!--
+  i.label { background: white; color: black; position: relative; }
+  body { background: black; color: #00ffff; font-family: Arial, Verdana, sans-serif; }
+  h2 { color: white; font-size: 14pt; }
+  pre { font-size: 10pt; }
+  i { text-decoration: none; font-style: normal; }
+  i.a { color: #000000; }
+  i.b { color: #0000aa; }
+  i.c { color: #aa0000; }
+  i.d { color: #aaaa00; }
+  i.e { color: #00aa00; }
+  i.f { color: #aaaaaa; }
+  i.g { color: #00ffff; }
+  i.h { color: #770077; }
+  i.i { color: #777777; }
+  i.j { color: #0000ff; }
+  i.k { color: #ee0000; }
+  i.l { color: #ffff00; }
+  i.m { color: #00ff00; }
+  i.n { color: #ffffff; }
+  i.o { color: #00ffff; }
+  i.p { color: #ff00ff; }
+  i.q { color: #ff0000; font-weight: bold; }
+  a.a { background: #000000; color: black; }
+  a.b { background: #0000aa; color: black; }
+  a.c { background: #aa0000; color: black; }
+  a.d { background: #aaaa00; color: black; }
+  a.e { background: #00aa00; color: black; }
+  a.f { background: #aaaaaa; color: black; }
+  a.g { background: #00ffff; color: black; }
+  a.h { background: #770077; color: black; }
+  a.i { background: #777777; color: black; }
+  a.j { background: #0000ff; color: black; }
+  a.k { background: #ee0000; color: black; }
+  a.l { background: #ffff00; color: black; }
+  a.m { background: #00ff00; color: black; }
+  a.n { background: #ffffff; color: black; }
+  a.o { background: #00ffff; color: black; }
+  a.p { background: #ff00ff; color: black; }
+  a.q { background: #ff0000; font-weight: bold; color: black; }
+  div.sgbox {
+    background: #bbb;
+    color: black;
+    position: fixed;
+    top: 0.5em;
+    right: 0.5em;
+    width: 25em;
+    height: 6em;
+    margin: 4px;
+    padding: 4px;
+    z-index: 10;
+    border: 2px solid gray;
+    font-size: 10pt;
+  }
+  i.label a {
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    border: 2px solid black;
+    border-radius: 0.35em;
+    padding: 0.15em;
+    box-shadow: 2px 2px 4px black;
+  }
+  div.sbtitle {
+    font-size: 1.5em;
+    font-weight: bold;
+  }
+  i.label a.nactive {
+    border: 2px solid rgba(100,0,0, 0.5);
+    background: rgba(255,0,0, 0.7);
+    color: rgba(255,255,255, 0.8);
+    text-shadow: 1px 1px 1px #000;
+    font-weight: bold;
+    transform: scale(1.1);
+  }
+  i.marker.nactive {
+    animation: pulse 1s ease infinite;
+  }
+  @keyframes pulse {
+    0% { background: #000; }
+    50% { background: #f00; }
+    100% { background: #000; }
+  }
+ -->
+ </style>
+</head>
+<body onLoad="jsGotoOnLoadPos();">
+<div id="sbox" class="sgbox">
+ <div class="sbtitle">Renardy</div>
+ <form>
+  <select id="slocation" onChange="jsGotoPos();" autofocus="autofocus">
+
+<option value="">-</option>
+<option value="loc47_36">Renardy harbour</option>
+<option value="loc20_21">St. Patric's Abbey</option>
+  </select>
+  <br />
+  <input id="shide" onClick="jsToggleLabels();" type="checkbox" checked="checked"><label for="shide">Labels</label>
+  <input id="sscroll" type="checkbox"><label for="sscroll">Smooth scroll</label>
+ </form>
+</div>
+<pre>
+<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~</i><i class=e>.</i><i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SS<i class=b>~</i>SSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~</i>SSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SS<i class=b>~~~~~~~~</i>S<i class=b>~~~~~~~~~~~~~~</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~</i>SSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~~~~~~~</i>SSSSSS<i class=b>~~~~~~~~~~~~~~~~~</i>SSSSSSS<i class=b>~~~~~~~~~~~~~~~~</i>S<i class=b>~~~~~~~~~~~~~~</i>SSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~</i>SSSSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SSS<i class=b>~~~~~~</i>SSSSSSSSSSSS<i class=b>~~~~</i>SSSSSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~</i>SS<i class=b>~~~~~~~~~~~~~</i>SSSSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~</i>S<i class=b>~</i>S<i class=e>....</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SSSSSSSSSSSSS<i class=b>~~~~~</i>SSSS<i class=f>tttttttttt</i>SSSSSSSSSSSSSSSSSSSSSSSSSS<i class=b>~~~~~~~</i>SSSSS<i class=b>~~~</i>SSSSS<i class=b>~~~~</i>SSS<i class=f>t</i><i class=h>h</i><i class=f>tt</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~</i>SS<i class=e>.</i><i class=i>##</i><i class=e>..</i>SS<i class=b>~~~~~~~~~~~</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~~~~~~~~~~~~</i>SSS<i class=e>.</i><i class=f>ttttttttttttttttttttttttttt</i>SSS<i class=f>ttttttt</i>S<i class=b>~~~~</i>SSSSSSSSSSSS<i class=f>ttt</i>SSS<i class=b>~~</i>S<i class=f>tt</i><i class=h>h</i><i class=p>^</i><i class=h>h</i><i class=f>t</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~</i>S<i class=e>.</i><i class=i>##</i><i class=e>...</i>S<i class=b>~~~~~~~~~~~~</i>SSS<i class=b>~~~~~~~~~~~~~~~~</i>SS<i class=b>~~~~~</i>SSSSSSSSSSSS<i class=e>...</i><i class=f>tttttttttttttttttttttttttt</i>SSS<i class=f>tttttttttt</i><i class=j>r</i><i class=b>R</i><i class=f>tttttttttttttttttt</i>SSSSSS<i class=f>t</i><i class=h>h</i><i class=f>tt</i>S<i class=b>~</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~</i>SS<i class=h>hh</i><i class=e>.</i><i class="label"><a id="loc20_21" class=n>St. Patric's Abbey</a></i><i class=e>.</i>SSS<i class=b>~~~~~~</i>SSSSSSSSSSSSSS<i class=b>~~~~~~~~~~~~</i>SSSSSS<i class=e>.....................</i><i class=i>###</i><i class=f>ttttttttttttttttttttttttttttt</i><i class=b>R</i><i class=j>r</i><i class=f>tttttttttttttttttttt</i>SSSSSSSSS<i class=b>~~</i>S<i class=b>~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~</i>SS<i class=e>..</i><i class=h>h</i><i class="marker n" id="mloc20_21">?</i><i class=e>..</i>SS<i class=b>~~~~~</i>SS<i class=m>fffff</i><i class=h>h</i><i class=m>fffff</i>wSSSSSSSSSSSSSS<i class=e>...........................</i><i class=i>#</i><i class=e>............</i><i class=f>tttttttttttttttttt</i><i class=j>r</i><i class=b>R</i><i class=f>tttttttttttttttttttt</i>SS<i class=f>ttttt</i>S<i class=b>~~~~</i>S<i class=b>~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~</i>SS<i class=e>...</i><i class=h>hh</i>SS<i class=b>~~~~~~</i><i class=j>rrrrr</i><i class=h>hhhh</i><i class="marker n" id="mloc39_22">?</i><i class=h>HHHHHHHHHH</i><i class=m>ffffffff</i><i class=h>hhhhhhhh</i><i class=m>fffffffffffffffff</i><i class=e>.</i><i class=i>#</i><i class=e>.............................</i><i class=j>r</i><i class=b>R</i><i class=e>............</i><i class=h>hhhh</i><i class=f>tttttttttttt</i>SS<i class=b>~~~~</i>S<i class=b>~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~</i>S<i class=b>~~</i>SS<i class=e>..</i><i class=h>hh</i>S<i class=b>~~~~~~~</i>S<i class=m>ffff</i><i class=h>hhHHHHHHHHHHHHHHHHHHHHHHHhhhhhhhhhhhhh</i><i class=m>fffffffffff</i><i class=e>..............................</i><i class=j>r</i><i class=b>R</i><i class=m>fff</i><i class=e>........</i><i class=h>hhhhhhh</i><i class=f>tttttttt</i><i class=e>...</i>SSS<i class=b>~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~</i>S<i class=b>~~~</i>SSSSSSS<i class=b>~</i>S<i class=b>~~~~</i>SSSSSSSSS<i class=h>HHHHHHHHHHHHHHHHhhhhhhhhhhhhhh</i><i class=p>^^^^</i><i class=h>hhhh</i><i class=m>fffffffff</i><i class=e>..........</i><i class=m>fffffffffffffffffff</i><i class=b>R</i><i class=m>fffff</i><i class=e>......</i><i class=h>hhhhhhhhhhhhhHHHH</i><i class=e>...</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~</i>S<i class=b>~~</i>S<i class=e>..</i><i class=h>hh</i>SSSS<i class=b>~~~~~</i>SSSSSS<i class=m>fffffff</i><i class=h>HHHHHHHHHHHhhhhhhhhhhhh</i><i class="marker n" id="mloc67_25">?</i><i class=p>^^</i><i class=f>!!</i><i class=p>^^^^^</i><i class=h>hhh</i><i class=m>fffffffffffff</i><i class=i>###</i><i class=m>fffffffffffffffff</i><i class=j>lll</i><i class=m>ffffff</i><i class=h>HHHHHHHhhhhhhhhhHHHHHHH</i><i class=e>.</i>SS<i class=b>~~</i>S<i class=b>~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~</i>S<i class=b>~</i>S<i class=e>.</i><i class=h>h</i><i class="marker n" id="mloc20_26">?</i><i class=h>h</i><i class=e>...</i>S<i class=b>~~~~~~</i>SS<i class=e>............</i><i class=m>fffffffffffffffff</i><i class=h>hhhh</i><i class=p>^^^^^^^^^^</i><i class=h>hhh</i><i class=m>fffffffffffff</i><i class=i>###</i><i class=m>fff</i><i class="marker n" id="mloc99_26">?</i><i class=m>fffffffffff</i><i class=j>llllllll</i><i class=m>fffff</i><i class=h>HHHHHHHHHHHHHHHHHHHH</i><i class=e>..</i>SS<i class=b>~</i>S<i class=b>~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~</i>S<i class=b>~</i>S<i class=e>.....</i>SSS<i class=b>~~~~~~~</i>SSSSS<i class=e>............</i><i class=m>f</i><i class="marker n" id="mloc51_27">?</i><i class=m>fff</i><i class=e>FFFFFFF</i><i class=h>hhh</i><i class=p>^^^^^^</i><i class=h>hhhhhhhhh</i><i class=m>ffffff</i><i class=e>FFFFFFFFFFFFFF</i><i class=m>f</i><i class=e>FF</i><i class=m>ffffffff</i><i class=j>lllllllllll</i><i class=m>ffff</i><i class=h>HHHHHHHHH</i><i class=m>fff</i><i class=h>HHHHHH</i><i class=e>..</i>SS<i class=b>~</i>S<i class=b>~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~</i>S<i class=b>~~</i>S<i class=e>....</i>SS<i class=b>~~~~~~~~~~~~</i>SSS<i class=e>.........</i><i class=m>fffffff</i><i class=e>FFFFFFFFFF</i><i class=h>hhhh</i><i class=p>^^^^^^^^^</i><i class=h>hhh</i><i class=m>ffffffff</i><i class=e>FFFFFFFFFFFFFF</i><i class=m>fffffffff</i><i class=j>llllllllll</i><i class=m>ffff</i><i class=e>....</i><i class=h>HHHH</i><i class=m>fffff</i><i class=h>HHHH</i><i class=e>...</i>S<i class=b>~~</i>S<i class=b>~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~</i>SS<i class=e>...</i>S<i class=b>~~</i>SS<i class=b>~~~~~~</i>SSSS<i class=e>......</i><i class=m>ffffffffffff</i><i class=e>FFFFFFFFFFF</i><i class=j>r</i><i class=h>hh</i><i class=p>^^^^^^^^</i><i class=h>hhh</i><i class=p>^</i><i class=h>hhh</i><i class=m>ffffffffff</i><i class=e>FFFFFFFFFF</i><i class=m>fffffff</i><i class=k>ss</i><i class=j>lllllllll</i><i class=k>ss</i><i class=m>fff</i><i class=e>.....</i><i class=m>fffff</i><i class=e>FFF</i><i class=m>fff</i><i class=e>...</i>S<i class=b>~~</i>S<i class=b>~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~</i>SSSSS<i class=b>~</i>S<i class=b>~~~~~~</i>SSS<i class=e>.........</i><i class=m>ffffffffffffffffffffff</i><i class=j>rr</i><i class=m>fff</i><i class=j>rr</i>w<i class=p>^</i><i class=h>hhh</i><i class=p>^^^^^^^</i><i class=h>hhhHHHHHHHHH</i><i class=m>fffffffffffffff</i><i class=k>ss</i><i class=b>RR</i><i class=k>ssssssss</i><i class=m>fff</i><i class=e>........</i><i class=m>fff</i><i class=e>FFF</i><i class=m>ffff</i><i class=e>..</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~</i>SS<i class=b>~~~~~~~~~~~~~~</i>SSSSSSSS<i class=e>...</i><i class=m>fffffff</i><i class=b>RRRRRRRR</i><i class=j>rrrrrrrrrrrr</i><i class=h>hhhhh</i><i class=p>^^^^^^^^^</i><i class=h>hhHHHHhhhHHHHH</i><i class=m>fffffffffff</i><i class=k>sss</i><i class=b>RR</i><i class=k>ssssssss</i><i class=m>fff</i><i class=e>.........</i><i class=m>ff</i><i class=e>FFFF</i><i class=m>ff</i><i class=e>..</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~</i>SS<i class=b>~</i>SSSSSSS<i class=m>ffff</i><i class=b>RRR</i><i class=m>fffffffffffffff</i><i class=h>hhhhhh</i><i class=p>^^^^</i><i class=f>!!!</i><i class=p>^^^</i><i class="marker n" id="mloc85_32">?</i><i class=h>hhHHHhhhhhHHHHH</i><i class=m>ffff</i><i class=k>sssssss</i><i class=b>RR</i><i class=k>ssssss</i><i class=m>fffff</i><i class=e>...........</i><i class=m>ffffff</i><i class=e>..</i>SS<i class=b>~~</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SSSSSSS<i class=b>RRRR</i><i class=m>fffffffffffffffffffffff</i><i class=p>^^^^^^^^^^^^</i><i class=h>HHHHHHHHHHHHH</i><i class=j>rrrrrrrrrr</i><i class=b>RR</i><i class=k>ssssss</i><i class=m>fffff</i><i class=e>......</i><i class="marker n" id="mloc130_33">?</i><i class=e>.....</i><i class=m>fffff</i><i class=e>..</i>SS<i class=b>~~</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SSS<i class=b>~~~~~~~~~~~~~~RRRRRRRRRRRRR</i><i class=m>fffffffffffffff</i><i class=h>h</i><i class=b>RR</i><i class=p>^^^^^^^^^^^^</i><i class=h>HHHHHHHHHHH</i><i class=m>fffff</i><i class=j>rr</i><i class=k>ss</i><i class=j>r</i><i class=k>ss</i><i class=j>r</i><i class=k>ssssssss</i><i class=m>ff</i><i class=e>.............</i><i class=m>f</i><i class=e>.....</i>S<i class=b>~~</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SSSSSSSS<i class=b>~~~~~~~~~~~</i>SS<i class=d>yyyyyyy</i><i class="marker n" id="mloc56_35">?</i><i class=b>RRRRRRRRRRRRRRRRRRRRR</i><i class=h>hhhhhh</i><i class=p>^^^^^^^^^^</i><i class=m>vvvvvvvvvv</i><i class=j>rr</i><i class=m>vvv</i><i class=p>^</i><i class=j>r</i><i class=p>^^^^^^</i><i class=k>ssss</i><i class=m>fff</i><i class=e>.................</i>SSS<i class=b>~</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~</i>SSS<i class=h>hhh</i>S<i class=h>hh</i>SSS<i class=b>~~~~~~~</i>SS<i class="marker n" id="mloc47_36">?</i><i class=i>-------------------------+------------+</i><i class=p>^^^^^</i><i class=m>vvvvvvvvvvv</i><i class=j>rr</i><i class=m>vv</i><i class=p>^^^^^</i><i class=f>!!</i><i class=p>^^^</i><i class=k>sssss</i><i class=m>fff</i><i class=e>...</i><i class=d>yyy</i><i class=e>.....</i>SSSSSS<i class=b>~~~</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~</i>SSS<i class=h>hhh</i><i class=p>^^^</i><i class=h>hhh</i>S<i class=b>~~~~~~</i>S<i class=d>yyy</i><i class="label"><a id="loc47_36" class=n>Renardy harbour</a></i><i class=d>yyyyyyyyyyyyy</i><i class=h>HHHHHHhhhhhhh</i><i class=i>\</i><i class=h>hhhhh</i><i class=p>^^^^^^^</i><i class=i>+----------+</i><i class=m>vvv</i><i class=j>rr</i><i class=m>vvvvvv</i><i class=p>^^^^^^^^</i><i class=k>sssss</i><i class=m>fff</i><i class=d>yyyyyy</i><i class=e>...</i>SSSSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~</i>S<i class=h>hhhh</i><i class="marker n" id="mloc30_38">?</i><i class=p>^</i><i class=c>V</i><i class=p>^</i><i class=h>hhh</i>S<i class=b>~~~~~</i>SSSS<i class=d>yyyyyyyyyyyyyy</i><i class=h>hhhhhHHHHHHHHH</i><i class=i>\</i><i class=h>hhhhhhhh</i><i class=p>^^^^^^</i><i class=m>vvvvvvvvv</i><i class=i>+--=----------------+</i><i class=k>ssss</i><i class=m>fff</i><i class=d>yyyyyyyy</i>SSSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~</i>SSS<i class=h>hhh</i><i class=p>^^^</i><i class=h>hh</i>SS<i class=b>~~~~~</i>S<i class=d>yyyyyyyyyyyyyyyyyyy</i><i class=h>hhhhHHHHH</i><i class=e>.</i><i class=h>HHH</i><i class=i>\</i><i class=h>hhhhhh</i><i class=p>^^^^^^^^^^^^</i><i class=m>vvvvvv</i><i class=j>rr</i><i class=m>vvvvvvvvvv</i><i class=h>hhhhhhh</i><i class=i>\</i><i class=k>sss</i><i class=m>ff</i><i class=d>yyyyyyyyy</i>SSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SSSS<i class=h>hhh</i>SSS<i class=b>~~~~~</i>SSS<i class=d>yyyyyyyyyyyyyyyyyyyyy</i><i class=h>HHHHHH</i><i class=e>....</i><i class=h>H</i><i class=i>+</i><i class="marker n" id="mloc78_40">?</i><i class=h>hhh</i><i class=p>^^^^</i><i class=c>V</i><i class=p>^^^</i><i class=m>vvvvvvv</i><i class=j>lllrr</i><i class=m>vvvvvvvv</i><i class=p>^^^^^^^^</i><i class=h>hhh</i><i class=i>\</i><i class=m>ffff</i><i class=d>yy</i><i class=i>###</i><i class=d>yyyyyyy</i><i class=j>r</i><i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~~~</i>SSSSS<i class=b>~~~~~</i>SSSSSS<i class=d>yyyyyyyyyy</i><i class=h>hh</i><i class=d>yyyyyyyyyyyyyy</i><i class=e>.....</i><i class=i>|</i><i class=e>.</i><i class=h>hhhhh</i><i class=p>^^</i><i class=c>V</i><i class=p>^^^^</i><i class=m>vvvvv</i><i class=j>lll</i><i class=m>vvvvvv</i><i class=p>^^^^^^^^^^</i><i class="marker n" id="mloc115_41">?</i><i class=h>hhhhhh</i><i class=i>\</i><i class=d>yyyyy</i><i class=i>####</i><i class=d>yyyyy</i><i class=j>rr</i><i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~~~~~~~</i>SSSSSSSSS<i class=d>yyyyyyyyyyyyy</i><i class=h>hhh</i><i class=d>yyyyyyyyyyyyyyyy</i><i class=e>...</i><i class=i>|</i><i class=e>..</i><i class=h>hhhhh</i><i class=p>^^^^^^^^</i><i class=m>vvv</i>w<i class="marker n" id="mloc97_42">?</i><i class=m>vvvv</i><i class=p>^^^^^^^^</i><i class=h>hhh</i><i class=p>^^^^^^^^</i><i class=h>hh</i><i class=i>\</i><i class=d>yyyyyyyyy</i><i class="marker n" id="mloc133_42">?</i><i class=j>rrrr</i><i class=d>yy</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~~</i>SSSSSS<i class=d>yyyyyyyyyyyyyyyyyyy</i><i class=h>hhhh</i><i class=d>yyyyyyyy</i><i class="marker n" id="mloc65_43">?</i><i class=d>yyyyyyyyyyy</i><i class=i>|</i><i class=e>....</i><i class=h>hhhhhhhh</i><i class="marker n" id="mloc90_43">?</i><i class=p>^^^^^^^^^^^^^^^^^^</i><i class=h>hhhhhhhhhhhhhhh</i><i class=i>\</i><i class=d>yyyyy</i><i class=j>rrrrr</i><i class=d>yyyyyy</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~</i>SSS<i class=d>yyyyyyyyyyyyyyyyyy</i><i class="marker n" id="mloc47_44">?</i><i class=h>hhhhhhhhhh</i><i class=d>yyyyyyyyyyyyyyyy</i><i class=e>...</i><i class=i>|</i><i class=e>.....</i><i class=h>hhhhhhhhhh</i><i class=p>^^^^^^^^^^</i><i class=m>vv</i><i class=h>hhhhhhhhh</i><i class=k>xxx</i><i class=h>hhhhhhhh</i><i class=i>\</i><i class=d>y</i><i class=j>rrrr</i><i class=d>yyyyyyyyyy</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~</i>S<i class=d>yyyyyyyyy</i><i class=m>fffffff</i><i class=h>hhhhhhh</i><i class=p>^^^^^^^</i><i class=h>hhhhh</i><i class=e>..</i><i class=d>yyyyyy</i><i class=m>fffffff</i><i class=i>|</i><i class=m>ff</i><i class=e>.....</i><i class=h>hhhhhhhhhhhhh</i><i class=m>vvvvvvv</i><i class=h>hhhh</i><i class=k>xxxxxxxxx</i><i class=h>h</i><i class=j>r</i><i class=h>hhh</i><i class=d>yyy</i><i class=i>+=-+</i><i class=d>yyyyyyyyyy</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~</i>SS<i class=e>..</i><i class=d>yyyyy</i><i class=m>fffffff</i><i class=h>hhh</i><i class=p>^^^^^^^^^^^^^^</i><i class=h>hhhh</i><i class=e>...</i><i class=d>yyyy</i><i class=m>fffffff</i><i class=i>|</i><i class=m>ffff</i><i class=e>.......</i><i class=h>hhhhhhhhh</i><i class=m>vvvv</i><i class=h>hhhh</i><i class=k>xxxxxxxxxxx</i><i class=h>hh</i><i class=j>rrrrrrrrr</i><i class=d>y</i><i class=i>|</i><i class=d>yyyyyyyyyy</i>SSS<i class=b>~</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~</i>SSS<i class=e>....</i><i class=m>fffffffffff</i><i class=h>hh</i><i class=p>^^^^^^^^</i><i class=f>!</i><i class=p>^^^^^</i><i class=h>hhhhh</i><i class=e>...</i><i class=d>yyy</i><i class=e>....</i><i class=m>fff</i><i class=i>|</i><i class=m>fffffffffff</i><i class=e>.......</i><i class=h>hhhhhhhhhhhhhhhhhhh</i><i class=k>x</i><i class=h>hhhh</i><i class=d>yyyyyyyyy</i><i class=i>+</i><i class=d>yyyyyyyyyyy</i>SSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~</i>SS<i class=e>......</i><i class=m>fff</i><i class=e>FF</i><i class=m>fffff</i><i class=h>hhh</i><i class=p>^^^^^</i><i class=f>!</i><i class=p>^^^^^^^^</i><i class=m>vvvv</i><i class=h>hhh</i><i class=e>....</i><i class=h>hhh</i><i class=e>..</i><i class=m>ff</i><i class=i>|</i><i class=m>ffffffffffffffff</i><i class=e>....................</i><i class=h>hhhhhhh</i><i class=e>..</i><i class=d>yyyyy</i><i class=i>/</i><i class=d>yyyyyyyyyyyy</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~</i>SSS<i class=e>...</i><i class=m>fff</i><i class=e>FFF</i><i class=m>fffff</i><i class=h>hhh</i><i class=m>vvv</i><i class=p>^^^^^^^^^^</i><i class=m>vvvvvv</i><i class=h>hhhhhhhhhhhh</i><i class=e>..</i><i class=i>|</i><i class=e>..</i><i class=m>ffffffffffffffff</i><i class=e>..........................</i><i class=d>yyyyy</i><i class=i>/</i><i class=m>fff</i><i class=d>yyyyyyyyyy</i>S<i class=b>~~~~~~</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~</i>SS<i class=e>..</i><i class="marker n" id="mloc28_50">?</i><i class=m>ffff</i><i class=e>FF</i><i class=m>fff</i><i class=h>hhhhhh</i><i class=m>vv</i><i class=p>^^^^^^^^^</i><i class=m>vvvvvvvvv</i><i class=h>hhhh</i><i class=p>^^^^^^</i><i class=h>hhh</i><i class=i>|</i><i class=e>...</i><i class=m>ffffffffffffffffffffffffffffffffff</i><i class=e>....</i><i class=m>fffffff</i><i class=i>/</i><i class=m>fffff</i><i class=d>yyyyyyyyy</i>SS<i class=b>~~~</i>SSS<i class=b>~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~</i>S<i class=e>..</i><i class=m>ffffff</i><i class=e>..</i><i class=h>hhhhhhhhhhhh</i><i class=p>^^</i><i class=h>hhhh</i><i class="marker n" id="mloc54_51">?</i><i class=m>vvvvv</i><i class=p>^^^^^^^^^^^^</i><i class=h>hhhhh</i><i class=i>|</i><i class=h>hh</i><i class=e>..</i><i class=m>ffffffffffffffffffffffffffffff</i><i class=e>........</i><i class=m>fffff</i><i class=i>/</i><i class=m>ffffffff</i><i class=e>..</i><i class="marker n" id="mloc136_51">?</i><i class=e>.</i><i class=d>yyy</i>SS<i class=b>~</i>SSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~</i>SS<i class=e>.</i><i class=m>fff</i><i class=e>.....</i><i class=m>vvvvvvvv</i><i class=h>hhhhhhh</i><i class=p>^^^^^^^^^^^^</i><i class=m>vvvvvvv</i><i class=h>hhhhhhh</i><i class=i>|</i><i class=h>hh</i><i class=e>..</i><i class=m>fffffffffffff</i><i class=e>FFFFFFF</i><i class=m>fffffff</i><i class=e>...</i><i class=h>hhhhhh</i><i class=e>.</i><i class=m>fffff</i><i class=i>/</i><i class=m>fffffffff</i><i class=e>....</i><i class=d>yyy</i>SSSS<i class=d>yy</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~</i>S<i class=e>.</i><i class=m>ff</i><i class=e>...</i><i class=h>hh</i><i class=e>...</i><i class=m>vv</i><i class="marker n" id="mloc40_53">?</i><i class=m>vv</i><i class=h>hhh</i><i class=p>^^^^^^^^</i><i class=f>!</i><i class=p>^</i><i class=f>!</i><i class=p>^^^^^^^^^^^^^^^</i><i class=h>hhhhh</i><i class=i>|</i><i class=h>hh</i><i class=e>....</i><i class=m>fffff</i><i class=i>##</i><i class=m>ffffff</i><i class=e>FFFFF</i><i class="marker n" id="mloc102_53">?</i><i class=m>ffffff</i><i class=e>....</i><i class=h>hhhh</i><i class="marker n" id="mloc117_53">?</i><i class=e>..</i><i class=m>fff</i><i class=i>/</i><i class=m>ffff</i><i class=e>FFFFF</i><i class=m>ff</i><i class=e>.....</i><i class=d>y</i>SSSS<i class=d>yy</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~</i>S<i class=e>.....</i><i class=h>hhhh</i><i class=e>..</i><i class=m>vvvvvv</i><i class=h>hhhhhhh</i><i class=p>^^^^^^^^</i><i class=f>!!</i><i class=p>^^^^^^^^</i><i class="marker n" id="mloc69_54">?</i><i class=h>hhhhhhh</i><i class=i>+</i><i class=h>hh</i><i class=e>....</i><i class=m>ffffff</i><i class=i>##</i><i class=m>f</i><i class=e>FFFFFFFFFF</i><i class=m>ffffffffff</i><i class=e>..</i><i class=h>hhh</i><i class=m>ffff</i><i class=i>/</i><i class=m>ffff</i><i class=e>FFFFF</i><i class=m>fff</i><i class=e>....</i>SSSS<i class=d>yyy</i>SSS<i class=b>~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~</i>S<i class=e>....</i><i class=h>hh</i><i class=k>xxx</i><i class=h>hh</i><i class=e>...</i><i class=m>vvvvvv</i><i class=h>hhhhhhhh</i><i class=p>^</i><i class=m>vvv</i><i class=p>^^^^^</i><i class=f>!!</i><i class=p>^^^^^^^</i><i class=h>hhhhh</i><i class=i>\</i><i class=h>hhhhhhhh</i><i class=m>ffffffffffff</i><i class=e>FFFFFFFFF</i><i class=m>ffff</i><i class=d>yyyyyy</i><i class=m>fff</i><i class=i>/</i><i class=d>y</i><i class=m>fffff</i><i class=e>FF</i><i class=m>ffff</i><i class=e>......</i>S<i class=d>yyyyy</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~</i>SS<i class=e>..</i><i class=h>hhhh</i><i class=k>x</i><i class=i>####</i><i class=e>...</i><i class=m>v</i><i class=e>.......</i><i class=h>hhhh</i><i class=m>vvv</i><i class="marker n" id="mloc57_56">?</i><i class=m>vv</i><i class=p>^^^^^^^^^^^^^^^^</i><i class=h>hhh</i><i class=i>+---+</i><i class=h>hhhh</i><i class=m>ffffffff</i><i class=e>FFFFFFFFF</i><i class=m>fffffff</i><i class=d>yyyyyy</i><i class=m>ff</i><i class=i>/</i><i class=d>yyyy</i><i class=m>fffffffff</i><i class=e>.......</i><i class=d>yyyy</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~</i>SS<i class=e>...</i><i class=h>hh</i><i class=k>xxxx</i><i class=i>###</i><i class=h>hhh</i><i class=e>...</i><i class=d>dddddddd</i><i class=h>h</i><i class=p>^^</i><i class=m>vvv</i><i class=p>^^^^^^^^</i><i class=m>vvvvvvvv</i><i class=p>^^^^^^^^^</i><i class=i>\</i><i class=h>hhhh</i><i class=m>ffffffffffffffffffffffff</i><i class=d>yyyyyy</i><i class=i>/</i><i class=d>yyyyyy</i><i class=m>fffffff</i><i class=e>....</i><i class="marker n" id="mloc137_57">?</i><i class=e>..</i><i class=d>yyyy</i>SSSSS<i class=b>~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~</i>S<i class=e>...</i><i class=h>hhh</i><i class=k>xxxx</i><i class=p>^^^</i><i class=d>dddddddddddddd</i><i class=h>hhhhhhhhhh</i><i class=p>^^^</i><i class=h>hh</i><i class=m>vvvvvvvv</i><i class=p>^^^^^^^^^</i><i class=i>\</i><i class=h>h</i><i class=m>ffffffffffffffffffffffff</i><i class=d>yyyyyyy</i><i class=i>/</i><i class=d>yyyyyyyyyy</i><i class=m>ffffff</i><i class=e>.....</i><i class=d>yyyy</i>SSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~</i>SSS<i class=h>hhhh</i><i class=k>xx</i><i class=p>^^^^^^</i><i class=d>dddddddddddddddd</i><i class=h>hhhhhhhhhhhh</i><i class=p>^^^</i><i class=m>vvvvvvvvvv</i><i class=p>^^^^^</i><i class=i>\</i><i class=h>hhh</i><i class=e>....</i><i class=m>fffffffffffffff</i><i class=d>yyyyyyyy</i><i class=i>+</i><i class=d>yyyy</i><i class="marker n" id="mloc122_59">?</i><i class=d>yyyyy</i><i class=m>fffffff</i><i class=e>.....</i><i class=d>yyyy</i>SSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~~</i>S<i class=h>hhh</i><i class=k>xxxx</i><i class=p>^^^</i><i class=c>VV</i><i class=p>^^^</i><i class=d>dddddddddddddddddddddd</i><i class=h>hhhh</i><i class="marker n" id="mloc68_60">?</i><i class=p>^</i><i class=f>!!</i><i class=p>^^</i><i class=m>vvvvvvvv</i><i class=b>~</i><i class=p>^^^^</i><i class=i>\</i><i class=e>........</i><i class=d>yy</i><i class=m>ff</i><i class=d>yyyyyyyyyy</i><i class=i>##</i><i class=d>yyyyy</i><i class=i>|</i><i class=d>yyyyyyyyyy</i><i class=m>fff</i><i class=h>hhh</i><i class=e>........</i><i class=d>yyy</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~</i>SS<i class=h>hh</i><i class=k>xxxx</i><i class=p>^^</i><i class=c>VVVV</i><i class=p>^^^</i><i class=d>dddddddddddddddddddddd</i><i class=h>hhh</i><i class=p>^^^^^^^^^^</i><i class=m>vvvvvvvv</i><i class=h>hh</i><i class=i>\</i><i class=e>..</i><i class=d>yyyyyyyy</i><i class=m>f</i><i class="marker n" id="mloc100_61">?</i><i class=d>yyyyyyy</i><i class=i>####</i><i class=d>yyyyy</i><i class=i>|</i><i class=d>yyyyyyyyy</i><i class=h>hhhhhhhh</i><i class=k>xxxx</i><i class=e>...</i><i class=d>yyy</i>SSSS<i class=b>~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~</i>S<i class=h>hhhh</i><i class=k>xxxx</i><i class=p>^^^</i><i class=d>d</i><i class=p>^^^</i><i class=d>ddddddd</i><i class=i>##</i><i class=d>dddddddddddddd</i><i class=h>hhhhhhh</i><i class=m>vvvvvvvv</i><i class=p>^^^</i><i class=h>hhhhh</i><i class=i>\</i><i class=e>....</i><i class=d>yyyyyyyyyyyyyyyy</i><i class=i>###</i><i class=d>yyyy</i><i class=i>|</i><i class=d>yyyyyyyyy</i><i class=h>hhhh</i><i class="marker n" id="mloc131_62">?</i><i class=h>hh</i><i class=k>xxxx</i><i class=e>.....</i><i class=d>yyy</i>SS<i class=b>~</i>S<i class=b>~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~</i>SSS<i class=h>hh</i><i class=k>xxxxx</i><i class=p>^</i><i class=d>dddddddddddd</i><i class=i>####</i><i class=d>ddddddddddd</i><i class=h>hhhhhhhh</i><i class=m>vvvv</i><i class="marker n" id="mloc77_63">?</i><i class=p>^^^^^^</i><i class=h>hhhHHH</i><i class=i>\</i><i class=e>....</i><i class=d>yyyy</i><i class=e>..</i><i class=d>yyyyyyyyyyyyyyyy</i><i class=i>|</i><i class=d>yyyyyyy</i><i class=e>jjj</i><i class=h>hhhhhh</i><i class=k>xxxxx</i><i class=e>....</i><i class=d>y</i>SSS<i class=b>~~~</i>S<i class=b>~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SS<i class=h>hhhh</i><i class=k>xxx</i><i class=h>hh</i>S<i class=d>ddddddddddd</i><i class=i>#</i><i class=d>dddddddd</i><i class="marker n" id="mloc60_64">?</i><i class=d>dddd</i><i class=h>hhh</i><i class=p>^^^^^^^^^^^^^</i><i class=h>hhhhhHHHHH</i><i class=i>\</i><i class=e>....</i><i class=d>yy</i><i class=e>.....</i><i class=d>yyyyyyyyyyyyyy</i><i class=i>|</i><i class=d>yyy</i><i class=e>jjjjjjjj</i><i class=h>hhh</i><i class=e>jj</i><i class=k>xxxxx</i><i class=e>..</i>SSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SSSS<i class=h>hhhhh</i>SSSS<i class=d>ddddddddddddddddddddddd</i><i class=h>hhhhh</i><i class=p>^^^^^^^^^^</i><i class=h>hhhhhhhHHHHH</i><i class=i>+------------------------+</i><i class=d>yy</i><i class=e>jjjjj</i><i class="marker n" id="mloc125_65">?</i><i class=e>jjjjjjjj</i><i class=k>xx</i><i class=e>....</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SSSSSSSSSSSSS<i class=d>ddddddddddddddddddddd</i><i class=h>hhhhh</i><i class=p>^^^^^^</i><i class=f>!</i><i class=p>^^^^^^^</i><i class=h>hhhhhhHHH</i><i class=e>............</i><i class=d>yyyyyyyyyyyyy</i><i class=e>jjjjjjjjjjjjjjjj.....</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~</i>SS<i class=b>~~~</i>SS<i class=b>~~~~~~~~~~~</i>S<i class=b>~~~~</i>SSSSSSSSS<i class=d>bbbbbbbdddddddddd</i><i class=h>hhhhhh</i><i class=p>^^^^^^^^^^^^^^</i><i class=h>hhhHHH</i><i class=e>....</i><i class="marker n" id="mloc100_67">?</i><i class=e>...</i><i class=d>yyyyyyyy</i>SSSSSSS<i class=h>hhhh</i><i class=e>jjjjjjjjj</i><i class=d>bb</i>SSSSSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~~</i>SSSSSSS<i class=b>~~~~~~~~~~~~~~~~~~~~</i>SSSSS<i class=d>bbbbbbbbbbbbbbbb</i><i class=h>hhh</i><i class=p>^^^^^^^</i><i class=h>hhhhhhhhhhhHHHHH</i><i class=e>.......</i><i class=d>yyyyy</i>SSSSSSSSS<i class=h>hhhh</i><i class=e>jjjjjjjjjj</i>SSS<i class=b>~</i>SSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~</i>SS<i class=e>j</i><i class=d>bbbb</i>SSSSSSSSS<i class=b>~~~~~~</i>SSSS<i class=b>~~~~~~</i>SSSSSSSSSSSSSS<i class=d>bbb</i><i class=h>hhhhhhh</i><i class="marker n" id="mloc80_69">?</i><i class=h>hhhhHHHHhhHH</i>SSSSSS<i class=e>...</i>SSS<i class=d>yyy</i>SSSSS<i class=e>jjjjjj</i>SSS<i class=h>hh</i><i class=d>bbbbbbbb</i><i class=e>jjj</i>S<i class=b>~~~~~</i>SSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~</i>S<i class=d>b</i><i class=e>jjjj</i><i class=d>bbbb</i><i class=p>^</i><i class=d>bbbb</i>SSS<i class=b>~~~</i>S<i class=b>~~~~</i>SS<i class=b>~~~~~~~~~~~~~~~~~</i>SSSSSSSSS<i class=h>hhhhhhhh</i>S<i class=h>HH</i>SSS<i class=e>..</i>SS<i class=b>~~</i>SSSSSSSSSSS<i class=b>~~~</i>SS<i class=e>jj</i><i class=h>hh</i><i class=e>jj</i>SSSSSSSSSSSSSSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~~</i>S<i class=d>bb</i><i class=e>jjj</i><i class="marker n" id="mloc31_71">?</i><i class=h>h</i><i class=p>^^^</i><i class=h>hh</i><i class=e>jj</i><i class=d>bb</i>S<i class=b>~~</i>S<i class=b>~~~~~~</i>SSS<i class=b>~~~~~~</i>SS<i class=b>~~~~~~~~~~~~~~</i>SSSSSSSSSSSSSSSSSS<i class=b>~~~~~~</i>SSSSSS<i class=b>~~~</i>S<i class=b>~~</i>SSS<i class=e>jjj</i>SSSSS<i class=b>~~~~~~~~</i>SSSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~~</i>S<i class=d>bb</i><i class=e>jjj</i><i class=h>h</i><i class=p>^</i><i class=c>V</i><i class=p>^^</i><i class=h>h</i><i class=e>jj</i><i class=d>bb</i>S<i class=b>~~~</i>S<i class=b>~~~~~~~~~~~~~~~~</i>SSSS<i class=b>~~~~~~~~~~~~~~~</i>SSSSSSSSS<i class=b>~~~~~~~~~~~~~~~~~</i>SS<i class=b>~~~~~</i>SSSSS<i class=b>~~~~~</i>SSSSS<i class=b>~~~~~~</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~</i>S<i class=d>bbbb</i><i class=e>j</i><i class=p>^^^^</i><i class=d>bbb</i>SSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~</i>SSSSS<i class=b>~~~~~~~~~~~~~</i>SS<i class=b>~~~~~</i>SSSSSSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~</i>SSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SSSSSSSSSSSSSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SSSSSSSSS<i class=b>~~~~~~~~~~~</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~</i>SS<i class=b>~~~~~~</i>SSSSSSSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~</i>S<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SSSS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~</i>SS<i class=b>~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+</i></pre>
+</body>
+</html>
