@@ -1,13 +1,13 @@
 
 ### 1 desc
 
-based on batmapper(https://github.com/lauriholmas/batmapper.git) and bcproxy(https://github.com/zither/bcproxy-python.git) ,  building a standalone mapper/realmMap for common mud client to play batmud(http://www.bat.org/).
+based on maputils(http://pupunen.net/hg/maputils), batmapper(https://github.com/lauriholmas/batmapper.git) and bcproxy(https://github.com/zither/bcproxy-python.git) , building a standalone mapper/realmMap for common mud client to play batmud(http://www.bat.org/).
 
 pls go into the directory 'batmap.v.02' and follow some directions.
 
 not pretty code and structure exists now, and maybe i will Refactoring it later. i can using it to play now :D
 
-by windspear
+== by wildfist ==
 
 ### 2 batmapper readme
 
