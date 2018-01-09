@@ -91,7 +91,7 @@ public class SearchPanel extends MapperPanel implements ItemListener {
                 for (Room room : areaRooms) {
                     if (room.getLongDesc().toLowerCase().contains( text.toLowerCase() ) ||
                             room.getShortDesc().toLowerCase().contains( text.toLowerCase() )||
-                            room.getNotes().toLowerCase().contains(text.toLowerCase()
+                            room.getNotes().toLowerCase().contains(text.toLowerCase() )
                        ) {
                         model.addElement( new SearchResultItem( room ) );
                     }
