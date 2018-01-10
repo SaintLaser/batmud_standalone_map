@@ -6,7 +6,7 @@
 # Distributed over IDC(I Don't Care) license
 import sys
 import colortrans
-import socket
+from socket import *
 from flask import Flask
 from flask_sockets import Sockets
 import random
@@ -23,10 +23,48 @@ S_CLOSE_CODE = 5
 S_AFTER_TEN = 6
 S_IAC = 7
 
+############################ start mapper socket
+mapperHandler = None
+
 MAPPER_ADDRESS="localhost"
 MAPPER_PORT=10000
 
-############################ start websocket here
+HOST=''
+BUFSIZ=1024
+ADDR=(HOST, MAPPER_PORT)
+sock=socket(AF_INET, SOCK_STREAM)
+sock.bind(ADDR)
+## 最多支持的连接数
+sock.listen(1)
+
+def listen_mapper():
+    global mapperHandler
+    while True:
+        ## 仅支持一个连接！
+        print('waiting for connection')
+        tcpClientSock, addr=sock.accept()
+        print('connect from ', addr)
+        mapperHandler = tcpClientSock
+
+        while True:
+            try:
+                data=tcpClientSock.recv(BUFSIZ)
+            except:
+                tcpClientSock.close()
+                break
+
+        
+        mapperHandler = None
+        tcpClientSock.close()
+    sock.close()
+
+# true start
+thread.start_new_thread(listen_mapper, ()) 
+
+print "mapper listen at {}".format( MAPPER_PORT)
+############################ end of mapper
+
+############################ start realm map websocket listen
 ws_handlers =[]
 app = Flask(__name__)
 sockets = Sockets(app)
@@ -35,6 +73,7 @@ websocket_port=10001
 # 地址解析
 pattern=re.compile(r'.*?Loc:.*?\[(\d+,\d+)\] in .*? \b((?:Lucentium|Desolathya|Rothikgen|Laenor|Furnachia)).*?',flags=re.S)
 
+## 监听的websocket地址
 @sockets.route('/location')
 def echo_socket(ws):
     global ws_handlers
@@ -56,15 +95,15 @@ def startWebsocket():
     from geventwebsocket.handler import WebSocketHandler
     server = pywsgi.WSGIServer(('', websocket_port), app, handler_class=WebSocketHandler)
     server.serve_forever()
-    print "websocket listen at {}".format(websocket_port)
 
+## action to start ws
 thread.start_new_thread(startWebsocket, ())  
+print "websocket listen at {}".format(websocket_port)
 ############################### end of websocket
 
-print "Connect to mapper at {}:{}".format(MAPPER_ADDRESS, MAPPER_PORT)
 
-mysocket=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-mysocket.connect((MAPPER_ADDRESS, MAPPER_PORT))
+# mysocket=socket.socket(socket.AF_INET, socket.SOCK_STREAM)
+# mysocket.connect((MAPPER_ADDRESS, MAPPER_PORT))
 
 class Options:
     def __init__(self, codes, enable_color, enable_combat_plugin):
@@ -203,6 +242,8 @@ class Parser:
         return self.output
 
     def parse_exp(self, exp):
+
+        global mapperHandler
         if exp.code in self.options.codes or exp.code in ["05", "06", "11", "29", "40", "41", "42"]:
             return ""
 
@@ -246,7 +287,9 @@ class Parser:
 
                 ### wind 201801, add code to send socket
                 print ";;".join(room[1:]) + "@@\n"
-                mysocket.send(";;".join(room[1:]) + "@@\n")
+                # mysocket.send(";;".join(room[1:]) + "@@\n")
+                if mapperHandler != None :
+                    mapperHandler.send(";;".join(room[1:]) + "@@\n")
 
 
                 return "[-{}-]{}\r\n".format(exp.code, ";;".join(room[1:5] + [room[7]]))

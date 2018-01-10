@@ -26,7 +26,6 @@ def echo_socket(ws):
 def genData():  
 	global ws_handlers
 	while 1:
-		print 'len ',len(ws_handlers)
 		if len(ws_handlers) > 0:
 		    a = random.random()
 		    print 'gen ', a
