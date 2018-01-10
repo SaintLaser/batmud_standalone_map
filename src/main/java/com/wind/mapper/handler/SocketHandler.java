@@ -29,6 +29,45 @@ public class SocketHandler implements IHandler{
 
     @Override
     public void beginHandle() {
+
+        try {
+            Socket socket = new Socket(MapperConfig.addr, MapperConfig.port);
+            PrintWriter os = new PrintWriter(socket.getOutputStream());
+            BufferedReader is = new BufferedReader(new InputStreamReader(socket.getInputStream()));
+
+            Tool.p("Create connection: ", socket);
+            String readline = is.readLine();
+            String roomInfo = "";
+            while (readline!=null) {
+                Tool.p("receive:" ,readline,readline.contains(MapperConfig.protocol_end));
+
+                if(readline.contains(MapperConfig.protocol_end)){
+                    //room info组装完毕
+                    roomInfo = roomInfo + readline.replaceAll(MapperConfig.protocol_end,"");
+                    handle(roomInfo);
+                    roomInfo = "";
+
+                    os.println("mapper data receive ok");
+                    os.flush();
+
+                }else{
+                    roomInfo = roomInfo + readline + "\n";
+                }
+
+                readline = is.readLine();
+            } //继续循环
+
+            os.close(); //关闭Socket输出流
+            is.close(); //关闭Socket输入流
+            socket.close(); //关闭Socket
+
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    @Deprecated
+    public void beginHandle2() {
         try {
 
             ServerSocket s = new ServerSocket(MapperConfig.port);

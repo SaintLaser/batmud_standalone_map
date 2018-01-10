@@ -23,8 +23,9 @@ public class MapperConfig {
 
     public static int mainFont;
 
+    public static String addr;
     /**
-     * socket监听的窗口
+     * socket
      */
     public static int port;
 
@@ -38,6 +39,7 @@ public class MapperConfig {
         mainWidth = Integer.valueOf(p.getProperty("mainWidth"));
         mainHeight = Integer.valueOf(p.getProperty("mainHeight"));
         mainFont = Integer.valueOf(p.getProperty("mainFont"));
+        addr = (p.getProperty("addr"));
         port = Integer.valueOf(p.getProperty("port"));
 
         System.out.println("configs: ");
