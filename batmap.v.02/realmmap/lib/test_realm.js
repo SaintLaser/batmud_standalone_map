@@ -1,6 +1,8 @@
 $(function () {
     console.log('start realm map......')
 
+    $("#sbox").hide();
+
     var WebSocketUrl = "ws://localhost:10001/location"
 
     //define the char div size. 基本delta的多少倍？
