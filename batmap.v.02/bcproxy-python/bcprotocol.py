@@ -41,9 +41,8 @@ def listen_mapper():
     global mapperHandler
     while True:
         ## 仅支持一个连接！
-        print('[mapper] waiting ...')
         tcpClientSock, addr=sock.accept()
-        print('[mapper] connect from ', addr)
+        print "[mapper] connect from {}".format( addr )
         mapperHandler = tcpClientSock
 
         while True:
@@ -76,7 +75,7 @@ pattern=re.compile(r'.*?Loc:.*?\[(\d+,\d+)\] in .*? \b((?:Lucentium|Desolathya|R
 @sockets.route('/location')
 def echo_socket(ws):
     global ws_handlers
-    print "connected!"
+    print "connected!\n"
     ws_handlers = [1]
     ws_handlers[0] = ws
     
@@ -84,7 +83,7 @@ def echo_socket(ws):
         message = ws.receive()
         print "receive:" , message
 
-    print 'sockets disconnected!'  
+    print 'sockets disconnected!\n'
     ws_handlers = []  
 
 ## start websocket

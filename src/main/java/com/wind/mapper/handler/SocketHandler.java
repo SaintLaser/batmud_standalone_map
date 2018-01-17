@@ -37,6 +37,7 @@ public class SocketHandler implements IHandler{
 
             Tool.p("Create connection: ", socket);
             String readline = is.readLine();
+            Tool.p("receive:" ,readline,readline.contains(MapperConfig.protocol_end));
             String roomInfo = "";
             while (readline!=null) {
                 Tool.p("receive:" ,readline,readline.contains(MapperConfig.protocol_end));
@@ -61,50 +62,6 @@ public class SocketHandler implements IHandler{
             is.close(); //关闭Socket输入流
             socket.close(); //关闭Socket
 
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
-    @Deprecated
-    public void beginHandle2() {
-        try {
-
-            ServerSocket s = new ServerSocket(MapperConfig.port);
-
-            while (true) {
-                Socket socket = s.accept();
-                Tool.p("New connection: ", socket);
-
-                BufferedReader br = new BufferedReader(new InputStreamReader(socket.getInputStream()));
-                PrintWriter pw = new PrintWriter(new BufferedWriter(new OutputStreamWriter(socket.getOutputStream())), true);
-                String roomInfo="";
-                String str;
-                while ((str = br.readLine()) != null) {
-                    Tool.p("receive:" ,str,str.contains(MapperConfig.protocol_end));
-
-                    if(str==null || str.trim().equals("")){
-                        continue;
-                    }
-
-                    if(str.contains(MapperConfig.protocol_end)){
-                        //room info组装完毕
-                        roomInfo = roomInfo + str.replaceAll(MapperConfig.protocol_end,"");
-                        handle(roomInfo);
-                        roomInfo = "";
-
-                        pw.println("ok");
-                        pw.flush();
-
-                    }else{
-                        roomInfo = roomInfo + str + "\n";
-                    }
-                }
-
-                br.close();
-                pw.close();
-                socket.close();
-            }
         } catch (IOException e) {
             e.printStackTrace();
         }
