@@ -60,7 +60,7 @@ def listen_mapper():
 # true start
 thread.start_new_thread(listen_mapper, ()) 
 
-print "mapper listen at {}".format( MAPPER_PORT)
+print "[mapper] listen at {}".format( MAPPER_PORT)
 ############################ end of mapper
 
 ############################ start realm map websocket listen
@@ -246,8 +246,7 @@ class Parser:
             return ""
 
         if exp.code in ["22", "23", "24", "25", "31"]:
-            return "[-{}-]{}\r\n".format(exp.code, exp.content)
-            #return exp.content
+            return exp.content
 
         if exp.code == "10":
 
