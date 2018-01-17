@@ -41,9 +41,9 @@ def listen_mapper():
     global mapperHandler
     while True:
         ## 仅支持一个连接！
-        print('waiting for connection')
+        print('[mapper] waiting ...')
         tcpClientSock, addr=sock.accept()
-        print('connect from ', addr)
+        print('[mapper] connect from ', addr)
         mapperHandler = tcpClientSock
 
         while True:
@@ -53,7 +53,6 @@ def listen_mapper():
                 tcpClientSock.close()
                 break
 
-        
         mapperHandler = None
         tcpClientSock.close()
     sock.close()
@@ -81,7 +80,6 @@ def echo_socket(ws):
     ws_handlers = [1]
     ws_handlers[0] = ws
     
-    print 'len connected ',len(ws_handlers)
     while not ws.closed:
         message = ws.receive()
         print "receive:" , message
@@ -98,7 +96,7 @@ def startWebsocket():
 
 ## action to start ws
 thread.start_new_thread(startWebsocket, ())  
-print "websocket listen at {}".format(websocket_port)
+print "[realm map] listen at {}".format(websocket_port)
 ############################### end of websocket
 
 
@@ -248,7 +246,8 @@ class Parser:
             return ""
 
         if exp.code in ["22", "23", "24", "25", "31"]:
-            return exp.content
+            return "[-{}-]{}\r\n".format(exp.code, exp.content)
+            #return exp.content
 
         if exp.code == "10":
 
@@ -256,7 +255,7 @@ class Parser:
             match = pattern.match(exp.content)
             if match and (len(ws_handlers) > 0):
                 # 向页面发送坐标
-                print 'send location ', match.group(2)+ ","+match.group(1)
+                print '[realm map]send location ', match.group(2)+ ","+match.group(1)
                 ws_handlers[0].send(match.group(2)+ ","+match.group(1))
 
             if exp.argu == "spec_battle" and self.options.enable_combat_plugin:
@@ -286,13 +285,13 @@ class Parser:
                 room = exp.content.split(";;")
 
                 ### wind 201801, add code to send socket
-                print ";;".join(room[1:]) + "@@\n"
-                # mysocket.send(";;".join(room[1:]) + "@@\n")
                 if mapperHandler != None :
+                    print "[mapper] send: " + ";;".join(room[1:]) + "@@\n"
                     mapperHandler.send(";;".join(room[1:]) + "@@\n")
 
-
-                return "[-{}-]{}\r\n".format(exp.code, ";;".join(room[1:5] + [room[7]]))
+                return ""
+                ## no need to return
+                #return "[-{}-]{}\r\n".format(exp.code, ";;".join(room[1:5] + [room[7]]))
 
         return "[-{}-]{}\r\n".format(exp.code, exp.content)
 
