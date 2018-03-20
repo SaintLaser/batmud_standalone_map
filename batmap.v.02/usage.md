@@ -2,26 +2,28 @@
 
 1. install jdk 8 or higher, install python.
 
-2. 修改配置文件config.properties
+2. change the profile : config.properties
 
-    baseDir为地图存放目录,可以设置为原client的地图目录。
-    addr、port为proxy中监听的mapper信息
+notice:  'baseDir' points the directory saving indoor rooms; you could set it equals to the batclient's configure.
+    'addr', 'port' is for the bat proxy
 
-3. 执行 
+3. run
 
         1.proxy.bat
 
     执行成功后应该弹出一个窗口程序。此时proxy主程序监听9999,mapper监听10000端口，realm map监听10001。
+    you should see a command window. the proxy program is listened at 9999, mapper 1000 and realm map 10001.
 
-4. 执行
+4. run
     
         2.mapper.bat
         
     此时启动mapper,连接proxy程序中的mapper端口,开启小地图窗口。
+    now you open a java client for batmapper.
 
-5. 打开realmmap目录下的laenor.html地图文件。
+5. 打开realmmap目录下的laenor.html地图文件。 open the file 'laenor.html' in realmmap directory.
 
-6. 使用mud客户端链接localhost:9999。
+6. 使用mud客户端链接localhost:9999。 using you favorite mud client to connect : localhost:9999
 
     
 说明
