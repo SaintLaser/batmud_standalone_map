@@ -1,4 +1,7 @@
 
+
+standalone map (big and small) for batmud. 
+
 ### 1 desc
 
 based on maputils(http://pupunen.net/hg/maputils), batmapper(https://github.com/lauriholmas/batmapper.git) and bcproxy(https://github.com/zither/bcproxy-python.git) , building a standalone mapper/realmMap for common mud client to play batmud(http://www.bat.org/).
