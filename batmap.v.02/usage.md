@@ -7,6 +7,13 @@
 notice:  'baseDir' points the directory saving indoor rooms; you could set it equals to the batclient's configure.
     'addr', 'port' is for the bat proxy
 
+
+3. python 配置
+
+    ## 安装pip
+    pip install flask
+    pip install flask_sockets
+    
 3. run
 
         1.proxy.bat

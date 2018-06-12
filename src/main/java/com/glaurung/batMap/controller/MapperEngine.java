@@ -500,4 +500,12 @@ public class MapperEngine implements ItemListener, ComponentListener {
         return scaler;
     }
 
+    /**
+     * 删除选定的房间
+     */
+    public void deletePickedRoom(){
+        graph.removeVertex(this.pickedRoom);
+        repaint();
+    }
+
 }

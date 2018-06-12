@@ -4,6 +4,7 @@
 # library. If you want to make a suggestion or fix something you can contact-me
 # at voorloop_at_gmail.com
 # Distributed over IDC(I Don't Care) license
+
 import socket
 import select
 import time
@@ -14,6 +15,8 @@ import bcprotocol
 # But when buffer get to high or delay go too down, you can broke things
 buffer_size = 4096
 delay = 0.0001
+
+### bat服务器配置
 forward_to = ('batmud.bat.org', 23)
 
 class RemoteParser:
@@ -121,6 +124,7 @@ if __name__ == '__main__':
     # User options #
     ################
     port = 9999
+    ##待解析的code列表
     codes = ["50", "52", "53", "54", "60", "61", "62", "63", "64", "70"]
     enable_color = True
     enable_combat_plugin = True

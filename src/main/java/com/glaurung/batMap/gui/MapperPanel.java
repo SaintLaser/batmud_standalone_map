@@ -7,10 +7,7 @@ import java.awt.event.ComponentEvent;
 import java.awt.event.ComponentListener;
 import java.awt.geom.Point2D;
 
-import javax.swing.JComboBox;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTextArea;
+import javax.swing.*;
 import javax.swing.border.LineBorder;
 import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
@@ -35,13 +32,23 @@ public class MapperPanel extends JPanel implements ComponentListener, DocumentLi
     private VisualizationViewer<Room, Exit> vv;
 
     public final Dimension MIN_PANEL_SIZE = new Dimension( 820, 550 );
+    //高度定义
+    //描述窗口宽度
     private final int DESC_WIDTH = 280;
+    //短描述高度
     private final int SHORT_DESC_HEIGHT = 40;
+    //长描述高度
     private final int LONG_DESC_HEIGHT = 270;
+    //出口 高度
     private final int EXITS_HEIGHT = 40;
+    //颜色选择框大小
+    private final int ROOM_COLOR_HEIGHT = 25;
+    private final int ROOM_COLOR_WIDTH = 100;
+    //删除框
+    private final int DELETE_BUTTON_HEIGHT = 25;
+    private final int DELETE_BUTTON_WIDTH = 75;
+
     protected int BORDERLINE = 7;
-    private final int BUTTON_HEIGHT = 25;
-    private final int BUTTON_WIDTH = 100;
 
     private final Color BORDER_COLOR = Color.LIGHT_GRAY;
     private final Color TEXT_COLOR = Color.LIGHT_GRAY;
@@ -59,6 +66,7 @@ public class MapperPanel extends JPanel implements ComponentListener, DocumentLi
     private boolean visibleDescs = true;
 
     private JComboBox roomColor;
+    private JButton deleteButton;
     MapperEngine engine;
 
 
@@ -99,8 +107,6 @@ public class MapperPanel extends JPanel implements ComponentListener, DocumentLi
 
         descPanel.add( roomShortDesc );
 
-//
-//        roomLongDesc.setBounds( 0, SHORT_DESC_HEIGHT + BORDERLINE, DESC_WIDTH, LONG_DESC_HEIGHT );
         roomLongDesc.setEditable( false );
         roomLongDesc.setColumns( 25 );
         roomLongDesc.setBorder( new LineBorder( BORDER_COLOR ) );
@@ -133,11 +139,18 @@ public class MapperPanel extends JPanel implements ComponentListener, DocumentLi
         roomColor.setFont( font );
         roomColor.addActionListener( this );
         roomColor.setEditable( false );
-        roomColor.setBounds( BUTTON_WIDTH + BORDERLINE, SHORT_DESC_HEIGHT + BORDERLINE + LONG_DESC_HEIGHT + BORDERLINE + EXITS_HEIGHT + BORDERLINE, BUTTON_WIDTH, BUTTON_HEIGHT );
+//        roomColor.setBounds( ROOM_COLOR_WIDTH + BORDERLINE, SHORT_DESC_HEIGHT + BORDERLINE + LONG_DESC_HEIGHT + BORDERLINE + EXITS_HEIGHT + BORDERLINE, ROOM_COLOR_WIDTH, ROOM_COLOR_HEIGHT);
+        roomColor.setBounds( BORDERLINE, SHORT_DESC_HEIGHT + BORDERLINE + LONG_DESC_HEIGHT + BORDERLINE + EXITS_HEIGHT + BORDERLINE, ROOM_COLOR_WIDTH, ROOM_COLOR_HEIGHT);
         roomColor.setToolTipText( "Use this to change room color to highlight it" );
         roomColor.setRenderer( new MapperPanelCellRenderer() );
 
-//		roomNotes.setBounds(0, BORDERLINE+SHORT_DESC_HEIGHT+BORDERLINE+LONG_DESC_HEIGHT+BORDERLINE+EXITS_HEIGHT+BORDERLINE+BUTTON_HEIGHT+BORDERLINE, DESC_WIDTH, NOTES_HEIGHT);
+        deleteButton = new JButton("Delete");
+        descPanel.add(deleteButton);
+        deleteButton.setFont( font );
+        deleteButton.addActionListener( this );
+        deleteButton.setBounds( ROOM_COLOR_WIDTH + 30 + BORDERLINE, SHORT_DESC_HEIGHT + BORDERLINE + LONG_DESC_HEIGHT + BORDERLINE + EXITS_HEIGHT + BORDERLINE, ROOM_COLOR_WIDTH, ROOM_COLOR_HEIGHT);
+
+//		roomNotes.setBounds(0, BORDERLINE+SHORT_DESC_HEIGHT+BORDERLINE+LONG_DESC_HEIGHT+BORDERLINE+EXITS_HEIGHT+BORDERLINE+ROOM_COLOR_HEIGHT+BORDERLINE, DESC_WIDTH, NOTES_HEIGHT);
         roomNotes.setEditable( true );
         roomNotes.setColumns( 25 );
         roomNotes.setBorder( new LineBorder( BORDER_COLOR ) );
@@ -149,7 +162,7 @@ public class MapperPanel extends JPanel implements ComponentListener, DocumentLi
 
 //		descPanel.add(roomNotes);
         roomNotes.setToolTipText( "Feel free to write your own notes here." );
-        scrollableNotes.setBounds( 514, SHORT_DESC_HEIGHT + BORDERLINE + LONG_DESC_HEIGHT + BORDERLINE + EXITS_HEIGHT + BORDERLINE + BUTTON_HEIGHT + BORDERLINE, DESC_WIDTH, descPanel.getHeight() - ( 4 * BORDERLINE + LONG_DESC_HEIGHT + EXITS_HEIGHT + SHORT_DESC_HEIGHT + BUTTON_HEIGHT ) );
+        scrollableNotes.setBounds( 514, SHORT_DESC_HEIGHT + BORDERLINE + LONG_DESC_HEIGHT + BORDERLINE + EXITS_HEIGHT + BORDERLINE + ROOM_COLOR_HEIGHT + BORDERLINE, DESC_WIDTH, descPanel.getHeight() - ( 4 * BORDERLINE + LONG_DESC_HEIGHT + EXITS_HEIGHT + SHORT_DESC_HEIGHT + ROOM_COLOR_HEIGHT) );
         this.add( scrollableNotes );
 
 
@@ -176,7 +189,7 @@ public class MapperPanel extends JPanel implements ComponentListener, DocumentLi
 
         if (visibleDescs) {
             vv.setBounds( 7, BORDERLINE, this.getWidth() - ( DESC_WIDTH + 21 ), this.getHeight() - ( BORDERLINE + 7 ) );
-            descPanel.setBounds( this.getWidth() - ( 7 + DESC_WIDTH ), BORDERLINE, DESC_WIDTH, SHORT_DESC_HEIGHT + LONG_DESC_HEIGHT + EXITS_HEIGHT + BUTTON_HEIGHT + 4 * 7 );
+            descPanel.setBounds( this.getWidth() - ( 7 + DESC_WIDTH ), BORDERLINE, DESC_WIDTH, SHORT_DESC_HEIGHT + LONG_DESC_HEIGHT + EXITS_HEIGHT + ROOM_COLOR_HEIGHT + 4 * 7 );
             scrollableNotes.setBounds( this.getWidth() - ( 7 + DESC_WIDTH ), BORDERLINE + descPanel.getHeight() + 7, DESC_WIDTH, this.getHeight() - ( descPanel.getHeight() + 14 + BORDERLINE ) );
 
         } else {
@@ -249,6 +262,12 @@ public class MapperPanel extends JPanel implements ComponentListener, DocumentLi
     public void actionPerformed( ActionEvent e ) {
         if (e.getSource().equals( roomColor )) {
             this.engine.changeRoomColor( RoomColors.getColors()[roomColor.getSelectedIndex()] );
+        }
+
+        //delete房间event
+        if( e.getSource().equals(deleteButton)){
+            System.out.println("start to delete room...");
+            this.engine.deletePickedRoom();
         }
 
     }
