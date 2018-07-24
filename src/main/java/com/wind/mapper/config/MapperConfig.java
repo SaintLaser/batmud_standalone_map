@@ -44,6 +44,7 @@ public class MapperConfig {
 
         System.out.println("configs: ");
         System.out.println("baseDir="+baseDir);
+        System.out.println("ip="+addr);
         System.out.println("port="+port);
         System.out.println("mainWidth="+mainWidth);
         System.out.println("mainHeight="+mainHeight);

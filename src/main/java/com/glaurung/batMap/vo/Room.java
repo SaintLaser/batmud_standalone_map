@@ -13,17 +13,22 @@ public class Room implements Serializable {
     private String id;
     private String shortDesc;
     private String longDesc;
+    //房间笔记
+    private String notes;
+    //房间路径
+    private String path;
+
     private boolean areaEntrance = false;
     private boolean current = false;
     private boolean drawn = false;
     //所属区域
     private Area area;
     private boolean picked = false;
+    //区域入口
     Set<String> exits = new HashSet<String>();
+    //是否indoors
     private boolean indoors;
-    private String notes;
     private Color color = null;
-
 
     public Room( String shortDesc, String id ) {
         this.shortDesc = shortDesc;
@@ -39,6 +44,14 @@ public class Room implements Serializable {
     public Room( String id, Area area ) {
         this.id = id;
         this.area = area;
+    }
+
+    public String getPath() {
+        return path;
+    }
+
+    public void setPath(String path) {
+        this.path = path;
     }
 
     public String getId() {
@@ -148,6 +161,14 @@ public class Room implements Serializable {
 
     public void addExits( Collection<String> outExits ) {
         this.exits.addAll( outExits );
+    }
+
+    public void addEntrance(boolean flag){
+        if( flag ){
+            this.exits.add("entrance");
+        }else{
+            this.exits.add("no entrance");
+        }
     }
 
     public void addExit( String exit ) {

@@ -207,7 +207,7 @@ public class MapperPanel extends JPanel implements ComponentListener, DocumentLi
 
     public void setTextForDescs( String shortDesc, String longDesc, String exits, Room room ) {
         this.roomShortDesc.setText( shortDesc );
-        this.roomLongDesc.setText( longDesc );
+        this.roomLongDesc.setText( longDesc  + "\n## " + room.getPath());
         this.roomExits.setText( exits );
         this.room = room;
         if (this.room != null) {

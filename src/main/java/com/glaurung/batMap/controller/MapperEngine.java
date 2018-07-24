@@ -32,6 +32,7 @@ import com.glaurung.batMap.vo.Exit;
 import com.glaurung.batMap.vo.Room;
 import com.mythicscape.batclient.interfaces.BatWindow;
 
+import com.sun.xml.internal.ws.util.StringUtils;
 import com.wind.mapper.common.Tool;
 import edu.uci.ics.jung.graph.SparseMultigraph;
 import edu.uci.ics.jung.graph.util.EdgeType;
@@ -150,6 +151,36 @@ public class MapperEngine implements ItemListener, ComponentListener {
             newRoom.setAreaEntrance( true );
         }
 
+        System.out.println("------------------------------------------------------");
+        //path 处理
+        if( newRoom.isAreaEntrance()){
+            System.out.println("入口 set path to 空");
+            newRoom.setPath("");
+        }else{
+            //找寻上一个房间的入库
+            if (currentRoom == null || didTeleportIn( exitUsed )) {
+                System.out.println("找不到上一个房间！ set path to 空");
+                newRoom.setPath("");
+            }else{
+                System.out.println("找到上一个房间！ 他的path " + currentRoom.getPath());
+                String newPath = currentRoom.getPath() + ";" + exitUsed;
+                System.out.println("本房间的待选路径 ： " + newPath);
+                System.out.println("本房间的原始路径 ： " + newRoom.getPath());
+                System.out.println("本房间的原始路径, nil? ： " + org.apache.commons.lang3.StringUtils.isBlank(newRoom.getPath()));
+                if(org.apache.commons.lang3.StringUtils.isBlank(newRoom.getPath())){
+                    System.out.println("本房间为空，所以设置路径为 ： " + newPath);
+                    newRoom.setPath(newPath);
+                }else if( newPath.length() < newRoom.getPath().length()){
+                    System.out.println("新路径更短，设置路径为 ： " + newPath);
+                    newRoom.setPath(newPath);
+                }else{
+                    System.out.println("本房间的路径不变！" );
+                }
+
+            }
+        }
+        System.out.println("------------------------------------------------------");
+
         if (currentRoom == null || didTeleportIn( exitUsed )) {
             graph.addVertex( newRoom );// if room existed in this graph, then this just does nothing?
         } else {
@@ -209,6 +240,7 @@ public class MapperEngine implements ItemListener, ComponentListener {
         room.setShortDesc( shortDesc );
         room.setIndoors( indoors );
         room.addExits( exits );
+        room.addEntrance(room.isAreaEntrance());
     }
 
     protected void refreshRoomGraphicsAndSetAsCurrent( Room newRoom, String longDesc, String shortDesc, boolean indoors, Set<String> exits ) {
