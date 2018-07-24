@@ -30,6 +30,8 @@ public class SearchPanel extends MapperPanel implements ItemListener {
     private DefaultComboBoxModel model = new DefaultComboBoxModel();
     private JComboBox results = new JComboBox( model );
     private JButton save = new JButton( "Save" );
+    private JButton toggleShortQuery = new JButton( "sQ" );
+    private boolean flagShortQuery = true;
 
     private DefaultComboBoxModel listAllModel = new DefaultComboBoxModel();
     private JComboBox areaList = new JComboBox( listAllModel );
@@ -45,6 +47,7 @@ public class SearchPanel extends MapperPanel implements ItemListener {
         searchText.setToolTipText( "Input desc to search here" );
         results.setToolTipText( "Click on a result to see map" );
         save.addActionListener( this );
+        toggleShortQuery.addActionListener(this);
         areaList.addItemListener( this );
         areaList.setToolTipText( "Select area from list to view map" );
     }
@@ -53,14 +56,16 @@ public class SearchPanel extends MapperPanel implements ItemListener {
     @Override
     public void componentResized( ComponentEvent e ) {
         super.componentResized( e );
-        searchText.setBounds( 20, 7, 120, ELEMENT_HEIGHT );
-        results.setBounds( 20 + searchText.getWidth() + 20, 7, 350, ELEMENT_HEIGHT );
-        areaList.setBounds( 20 + searchText.getWidth() + 20 + results.getWidth() + 20, 7, 150, ELEMENT_HEIGHT );
-        save.setBounds( 20 + searchText.getWidth() + 20 + results.getWidth() + 20 + areaList.getWidth() + 20, 7, 70, ELEMENT_HEIGHT );
+        searchText.setBounds( 15, 7, 100, ELEMENT_HEIGHT );
+        results.setBounds( 15 + searchText.getWidth() + 15, 7, 350, ELEMENT_HEIGHT );
+        areaList.setBounds( 15 + searchText.getWidth() + 15 + results.getWidth() + 15, 7, 150, ELEMENT_HEIGHT );
+        save.setBounds( 15 + searchText.getWidth() + 15 + results.getWidth() + 15 + areaList.getWidth() + 10, 7, 65, ELEMENT_HEIGHT );
+        toggleShortQuery.setBounds( 15 + searchText.getWidth() + 15 + results.getWidth() + 15 + areaList.getWidth() + 10 + save.getWidth() + 5 , 7, 60, ELEMENT_HEIGHT );
         this.add( searchText );
         this.add( results );
         this.add( areaList );
         this.add( save );
+        this.add( toggleShortQuery );
         populateAreaList();
     }
 
@@ -71,6 +76,18 @@ public class SearchPanel extends MapperPanel implements ItemListener {
             return;
         } else if (e.getSource() == save) {
             this.engine.save();
+        }else if( e.getSource() == toggleShortQuery){
+            //切换short 查询
+            if( flagShortQuery ){
+                //当前为short，那么改成全文检索
+                flagShortQuery = false;
+                toggleShortQuery.setText("fQ");
+            }else{
+                flagShortQuery = true;
+                toggleShortQuery.setText("sQ");
+
+            }
+            toggleShortQuery.updateUI();
         }
         super.actionPerformed( e );
     }
@@ -89,13 +106,22 @@ public class SearchPanel extends MapperPanel implements ItemListener {
                 AreaSaveObject aso = AreaDataPersister.loadData( this.engine.getBaseDir(), areaName );
                 Collection<Room> areaRooms = aso.getGraph().getVertices();
                 for (Room room : areaRooms) {
-                    if (room.getLongDesc().toLowerCase().contains( text.toLowerCase() ) ||
-                            room.getShortDesc().toLowerCase().contains( text.toLowerCase() )||
-                            ( room.getNotes() != null && room.getNotes().toLowerCase().contains(text.toLowerCase() )
-                            )
-                       ) {
-                        model.addElement( new SearchResultItem( room ) );
+
+                    //切换short查询和full查询
+                    if( flagShortQuery ){
+                        if ( room.getShortDesc().toLowerCase().contains( text.toLowerCase() )) {
+                            model.addElement( new SearchResultItem( room ) );
+                        }
+                    }else{
+                        if (room.getLongDesc().toLowerCase().contains( text.toLowerCase() ) ||
+                                room.getShortDesc().toLowerCase().contains( text.toLowerCase() )||
+                                ( room.getNotes() != null && room.getNotes().toLowerCase().contains(text.toLowerCase() )
+                                )
+                                ) {
+                            model.addElement( new SearchResultItem( room ) );
+                        }
                     }
+
                 }
             }
         } catch (IOException e) {
