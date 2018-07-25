@@ -14,7 +14,7 @@ import javax.swing.ImageIcon;
 
 import org.apache.commons.collections15.Transformer;
 
-import com.glaurung.batMap.vo.Room;
+import com.glaurung.batMap.vo.json.Room;
 
 public class RoomIconTransformer implements Transformer<Room, Icon> {
 

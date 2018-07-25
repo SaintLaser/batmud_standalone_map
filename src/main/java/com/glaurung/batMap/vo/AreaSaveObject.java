@@ -6,7 +6,9 @@ import java.util.HashMap;
 import java.util.Map;
 
 import edu.uci.ics.jung.graph.SparseMultigraph;
+import lombok.Data;
 
+@Data
 public class AreaSaveObject implements Serializable {
 
 
@@ -24,26 +26,5 @@ public class AreaSaveObject implements Serializable {
     public SparseMultigraph<Room, Exit> getGraph() {
         return graph;
     }
-
-    public void setGraph( SparseMultigraph<Room, Exit> graph ) {
-        this.graph = graph;
-    }
-
-    public Map<Room, Point2D> getLocations() {
-        return locations;
-    }
-
-    public void setLocations( Map<Room, Point2D> locations ) {
-        this.locations = locations;
-    }
-
-    public String getFileName() {
-        return fileName;
-    }
-
-    public void setFileName( String fileName ) {
-        this.fileName = fileName;
-    }
-
 
 }

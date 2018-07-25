@@ -1,5 +1,6 @@
-package com.glaurung.batMap.vo;
+package com.glaurung.batMap.vo.json;
 
+import com.alibaba.fastjson.JSON;
 import lombok.Data;
 
 import java.io.Serializable;
@@ -7,8 +8,9 @@ import java.io.Serializable;
 @Data
 public class Exit implements Serializable {
 
-    public final String TELEPORT = "teleport";
+
     private static final long serialVersionUID = 3983564665752135097L;
+    public final String TELEPORT = "teleport";
 
     private String exit;
     //方向简称
@@ -47,13 +49,18 @@ public class Exit implements Serializable {
         return this.exit;
     }
 
-       public boolean equals( Object o ) {
+    public boolean equals( Object o ) {
         if (o instanceof Exit) {
             if (this.exit.equals( ( (Exit) o ).getExit() ))
                 return true;
         }
         return false;
 
+    }
+
+    public com.glaurung.batMap.vo.Exit xfer(){
+        String json = JSON.toJSONString(this);
+        return JSON.parseObject(json, com.glaurung.batMap.vo.Exit.class);
     }
 
 }

@@ -10,8 +10,8 @@ import javax.swing.JFrame;
 import javax.swing.JTextField;
 
 import com.glaurung.batMap.controller.MapperEngine;
-import com.glaurung.batMap.vo.Exit;
-import com.glaurung.batMap.vo.Room;
+import com.glaurung.batMap.vo.json.Exit;
+import com.glaurung.batMap.vo.json.Room;
 
 import edu.uci.ics.jung.graph.SparseMultigraph;
 

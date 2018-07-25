@@ -6,7 +6,7 @@ import java.awt.Font;
 
 import javax.swing.JComponent;
 
-import com.glaurung.batMap.vo.Exit;
+import com.glaurung.batMap.vo.json.Exit;
 
 import edu.uci.ics.jung.visualization.renderers.DefaultEdgeLabelRenderer;
 

@@ -2,8 +2,8 @@ package com.wind.mapper;
 
 import com.glaurung.batMap.controller.MapperEngine;
 import com.glaurung.batMap.controller.SearchEngine;
-import com.glaurung.batMap.vo.Exit;
-import com.glaurung.batMap.vo.Room;
+import com.glaurung.batMap.vo.json.Exit;
+import com.glaurung.batMap.vo.json.Room;
 import com.wind.mapper.config.MapperConfig;
 import com.wind.mapper.handler.IHandler;
 import com.wind.mapper.handler.SocketHandler;

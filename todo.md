@@ -21,6 +21,10 @@
 
 2. 切换short和full文本查询。当按钮为sQ时候，进行short desc查询；为fQ的时候，进行full desc查询。
 
+#### 20180724
+
+1. 转换地图文件为map格式。当初次执行的时候，会自动生成.batmap对应的.batmap_json文件，不会删除原来的文件。
+
 ### todo
 
 1. 收集怪

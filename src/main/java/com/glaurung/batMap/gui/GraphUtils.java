@@ -2,7 +2,7 @@ package com.glaurung.batMap.gui;
 
 import java.util.Collection;
 
-import com.glaurung.batMap.vo.Exit;
+import com.glaurung.batMap.vo.json.Exit;
 
 public class GraphUtils {
 

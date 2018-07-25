@@ -2,13 +2,12 @@ package com.glaurung.batMap.controller;
 
 import java.awt.event.ItemListener;
 import java.io.IOException;
-import java.sql.Savepoint;
 
 import com.glaurung.batMap.gui.search.SearchPanel;
 import com.glaurung.batMap.io.AreaDataPersister;
-import com.glaurung.batMap.vo.AreaSaveObject;
-import com.glaurung.batMap.vo.Exit;
-import com.glaurung.batMap.vo.Room;
+import com.glaurung.batMap.vo.json.AreaSaveObject;
+import com.glaurung.batMap.vo.json.Exit;
+import com.glaurung.batMap.vo.json.Room;
 
 import edu.uci.ics.jung.graph.SparseMultigraph;
 

@@ -15,9 +15,6 @@ import java.util.Collection;
 
 import javax.swing.JComponent;
 
-import com.glaurung.batMap.vo.Exit;
-import com.glaurung.batMap.vo.Room;
-
 import edu.uci.ics.jung.algorithms.layout.GraphElementAccessor;
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.visualization.Layer;

@@ -7,8 +7,8 @@ import java.awt.geom.Point2D;
 import javax.swing.JOptionPane;
 
 import com.glaurung.batMap.controller.MapperEngine;
-import com.glaurung.batMap.vo.Exit;
-import com.glaurung.batMap.vo.Room;
+import com.glaurung.batMap.vo.json.Exit;
+import com.glaurung.batMap.vo.json.Room;
 
 import edu.uci.ics.jung.algorithms.layout.GraphElementAccessor;
 import edu.uci.ics.jung.algorithms.layout.Layout;

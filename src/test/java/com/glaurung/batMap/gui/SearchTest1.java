@@ -6,8 +6,8 @@ import javax.swing.JFrame;
 
 import com.glaurung.batMap.controller.SearchEngine;
 import com.glaurung.batMap.gui.search.SearchPanel;
-import com.glaurung.batMap.vo.Exit;
-import com.glaurung.batMap.vo.Room;
+import com.glaurung.batMap.vo.json.Exit;
+import com.glaurung.batMap.vo.json.Room;
 
 import edu.uci.ics.jung.graph.SparseMultigraph;
 

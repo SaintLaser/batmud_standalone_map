@@ -5,8 +5,8 @@ import java.awt.geom.Area;
 
 import org.apache.commons.collections15.Transformer;
 
-import com.glaurung.batMap.vo.Exit;
-import com.glaurung.batMap.vo.Room;
+import com.glaurung.batMap.vo.json.Exit;
+import com.glaurung.batMap.vo.json.Room;
 
 import edu.uci.ics.jung.graph.SparseMultigraph;
 import edu.uci.ics.jung.visualization.decorators.AbstractVertexShapeTransformer;

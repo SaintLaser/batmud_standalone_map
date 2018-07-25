@@ -10,7 +10,7 @@ import com.glaurung.batMap.gui.manual.ManualPanel;
 import com.glaurung.batMap.gui.search.SearchPanel;
 import com.glaurung.batMap.io.AreaDataPersister;
 import com.glaurung.batMap.io.GuiDataPersister;
-import com.glaurung.batMap.vo.GuiData;
+import com.glaurung.batMap.vo.json.GuiData;
 import com.mythicscape.batclient.interfaces.BatClientPlugin;
 import com.mythicscape.batclient.interfaces.BatClientPluginTrigger;
 import com.mythicscape.batclient.interfaces.BatClientPluginUtil;

@@ -1,6 +1,6 @@
 package com.glaurung.batMap.gui.search;
 
-import com.glaurung.batMap.vo.Room;
+import com.glaurung.batMap.vo.json.Room;
 
 public class SearchResultItem {
 

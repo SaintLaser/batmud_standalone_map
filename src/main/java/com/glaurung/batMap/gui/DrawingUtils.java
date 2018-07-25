@@ -2,7 +2,7 @@ package com.glaurung.batMap.gui;
 
 import java.awt.geom.Point2D;
 
-import com.glaurung.batMap.vo.Exit;
+import com.glaurung.batMap.vo.json.Exit;
 
 /**
  * This clas is used to get relative positions of rooms, give it a location and exit,

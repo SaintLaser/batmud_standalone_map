@@ -1,5 +1,6 @@
-package com.glaurung.batMap.vo;
+package com.glaurung.batMap.vo.json;
 
+import com.alibaba.fastjson.JSON;
 import lombok.Data;
 
 import java.awt.Dimension;
@@ -35,6 +36,11 @@ public class GuiData implements Serializable {
 
     public int getWidth() {
         return this.size.width;
+    }
+
+    public com.glaurung.batMap.vo.GuiData xfer(){
+        String json = JSON.toJSONString(this);
+        return JSON.parseObject(json, com.glaurung.batMap.vo.GuiData.class);
     }
 
 }

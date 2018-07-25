@@ -7,17 +7,19 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
-import java.util.Collection;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
+import com.alibaba.fastjson.JSON;
+import com.glaurung.batMap.vo.json.LocalPoint2D;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
-import com.glaurung.batMap.vo.AreaSaveObject;
-import com.glaurung.batMap.vo.Exit;
-import com.glaurung.batMap.vo.Room;
+import com.glaurung.batMap.vo.json.AreaSaveObject;
+import com.glaurung.batMap.vo.json.Exit;
+import com.glaurung.batMap.vo.json.Room;
 
 import edu.uci.ics.jung.algorithms.layout.Layout;
 import edu.uci.ics.jung.graph.SparseMultigraph;
@@ -25,33 +27,90 @@ import edu.uci.ics.jung.graph.SparseMultigraph;
 public class AreaDataPersister {
 
     //文件后缀
-    private static final String SUFFIX = ".batmap";
+    public static final String SUFFIX = ".batmap";
 
 
+    //json 文件后缀
+    public static final String JSON_SUFFIX = ".batmap.json";
+
+
+    /**
+     *
+     * @param basedir
+     * @param graph
+     * @param layout
+     * @throws IOException
+     */
     public static void save( String basedir, SparseMultigraph<Room, Exit> graph, Layout<Room, Exit> layout ) throws IOException {
         AreaSaveObject saveObject = makeSaveObject( basedir, graph, layout );
         saveData( saveObject );
-
     }
 
 
     private static void saveData( AreaSaveObject saveObject ) throws IOException {
-        FileOutputStream fileOutputStream = new FileOutputStream( new File( saveObject.getFileName() ) );
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream( fileOutputStream );
-        objectOutputStream.writeObject( saveObject );
+
+        saveObject.toPersistance();
+
+        //保存json
+        String jsonFileName = saveObject.getFileName() + ".json";
+        System.out.println("beging to save : " + jsonFileName);
+        File jFile = new File( jsonFileName );
+        if(! jFile.exists()){
+            jFile.createNewFile();
+        }
+        FileOutputStream fileOutputStream = new FileOutputStream( jFile);
+        byte[] bs = JSON.toJSONString(saveObject).getBytes("UTF-8");
+        System.out.println("beging to save content : " + JSON.toJSONString(saveObject));
+        fileOutputStream.write(bs);
+        fileOutputStream.flush();
         fileOutputStream.close();
 
+        //保存原始的地图
+        System.out.println("beging to save : " + saveObject.getFileName());
+        com.glaurung.batMap.vo.AreaSaveObject old = saveObject.xfer();
+        File oFile = new File( saveObject.getFileName() );
+        if( !oFile.exists()){
+            oFile.createNewFile();
+        }
+        fileOutputStream = new FileOutputStream( oFile);
+        ObjectOutputStream objectOutputStream = new ObjectOutputStream( fileOutputStream );
+        objectOutputStream.writeObject( old );
+        fileOutputStream.close();
+
+
+        System.out.println("save ok!");
     }
 
 
     public static AreaSaveObject loadData( String basedir, String areaName ) throws IOException, ClassNotFoundException {
 
-        File dataFile = new File( getFileNameFrom( basedir, areaName ) );
-//		System.out.println("\n\n+ndataFileForLoading\n\n\n"+dataFile);
-        FileInputStream fileInputStream = new FileInputStream( dataFile );
-        ObjectInputStream objectInputStream = new ObjectInputStream( fileInputStream );
-        AreaSaveObject saveObject = (AreaSaveObject) objectInputStream.readObject();
-        return saveObject;
+//        File dataFile = new File( getFileNameFrom( basedir, areaName ) );
+////		System.out.println("\n\n+ndataFileForLoading\n\n\n"+dataFile);
+//        FileInputStream fileInputStream = new FileInputStream( dataFile );
+//        ObjectInputStream objectInputStream = new ObjectInputStream( fileInputStream );
+//        AreaSaveObject saveObject = (AreaSaveObject) objectInputStream.readObject();
+
+        //调整为从json文件读取
+
+        File dataFile = new File( getJsonFileNameFrom( basedir, areaName ) );
+		System.out.println("-----dataFileForLoading : "+areaName);
+		System.out.println("-----dataFileForLoading : "+dataFile);
+        byte[] bytes = FileUtils.readFileToByteArray(dataFile);
+        AreaSaveObject areaSaveObject = JSON.parseObject(new String(bytes,"UTF-8"),AreaSaveObject.class);
+
+        System.out.println("read " + new String(bytes,"UTF-8"));
+
+        Map<Room, Point2D> lopcs = areaSaveObject.getLocations();
+
+        System.out.println("locs size" + lopcs.size());
+        for( Room room : lopcs.keySet()){
+            System.out.println("---");
+            System.out.println("room " + JSON.toJSONString(room));
+            System.out.println("Point " + JSON.toJSONString(lopcs.get(room)));
+        }
+
+        areaSaveObject.toPoint2D();
+        return areaSaveObject;
     }
 
     public static List<String> listAreaNames( String basedir ) {
@@ -85,6 +144,22 @@ public class AreaDataPersister {
         areaName = areaName.replaceAll( "'", "" );
         areaName = areaName.replaceAll( "/", "" );
         areaName = areaName + SUFFIX;
+        File newDir = new File( basedir );
+//		File pathFile = new File(PATH);
+        if (! newDir.exists()) {
+            if (! newDir.mkdir()) {
+                throw new IOException( basedir + " doesn't exist" );
+            }
+        }
+
+        return new File( newDir, areaName ).getPath();
+    }
+
+    private static String getJsonFileNameFrom( String basedir, String areaName ) throws IOException {
+
+        areaName = areaName.replaceAll( "'", "" );
+        areaName = areaName.replaceAll( "/", "" );
+        areaName = areaName + JSON_SUFFIX;
         File newDir = new File( basedir );
 //		File pathFile = new File(PATH);
         if (! newDir.exists()) {

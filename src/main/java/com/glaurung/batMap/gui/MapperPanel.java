@@ -13,8 +13,8 @@ import javax.swing.event.DocumentEvent;
 import javax.swing.event.DocumentListener;
 
 import com.glaurung.batMap.controller.MapperEngine;
-import com.glaurung.batMap.vo.Exit;
-import com.glaurung.batMap.vo.Room;
+import com.glaurung.batMap.vo.json.Exit;
+import com.glaurung.batMap.vo.json.Room;
 
 import com.wind.mapper.config.MapperConfig;
 import edu.uci.ics.jung.visualization.VisualizationViewer;

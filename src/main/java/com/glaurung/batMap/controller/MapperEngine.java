@@ -26,10 +26,10 @@ import com.glaurung.batMap.gui.RoomIconTransformer;
 import com.glaurung.batMap.gui.RoomShape;
 import com.glaurung.batMap.io.AreaDataPersister;
 import com.glaurung.batMap.io.GuiDataPersister;
-import com.glaurung.batMap.vo.Area;
-import com.glaurung.batMap.vo.AreaSaveObject;
-import com.glaurung.batMap.vo.Exit;
-import com.glaurung.batMap.vo.Room;
+import com.glaurung.batMap.vo.json.Area;
+import com.glaurung.batMap.vo.json.AreaSaveObject;
+import com.glaurung.batMap.vo.json.Exit;
+import com.glaurung.batMap.vo.json.Room;
 import com.mythicscape.batclient.interfaces.BatWindow;
 
 import com.wind.mapper.common.Tool;

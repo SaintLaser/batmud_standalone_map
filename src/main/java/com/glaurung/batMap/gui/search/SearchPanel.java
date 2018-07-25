@@ -16,9 +16,9 @@ import javax.swing.JTextField;
 import com.glaurung.batMap.controller.SearchEngine;
 import com.glaurung.batMap.gui.MapperPanel;
 import com.glaurung.batMap.io.AreaDataPersister;
-import com.glaurung.batMap.vo.Area;
-import com.glaurung.batMap.vo.AreaSaveObject;
-import com.glaurung.batMap.vo.Room;
+import com.glaurung.batMap.vo.json.Area;
+import com.glaurung.batMap.vo.json.AreaSaveObject;
+import com.glaurung.batMap.vo.json.Room;
 
 public class SearchPanel extends MapperPanel implements ItemListener {
 

@@ -9,7 +9,7 @@ import java.io.IOException;
 import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 
-import com.glaurung.batMap.vo.GuiData;
+import com.glaurung.batMap.vo.json.GuiData;
 
 /**
  * 数据持久化
