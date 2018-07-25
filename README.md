@@ -10,6 +10,8 @@ pls go into the directory 'batmap.v.02' and follow some directions.
 
 not pretty code and structure exists now, and maybe i will Refactoring it later. i can using it to play now :D
 
+![screenshot](./screenshot.png)
+
 == by wildfist ==
 
 ### 2 batmapper readme
