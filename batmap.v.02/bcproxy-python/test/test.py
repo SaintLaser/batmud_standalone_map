@@ -1,11 +1,12 @@
 # encoding: UTF-8
 import re
-import thread
+import threading
  
 #-*- coding: utf-8 -*-
 from socket import *
 import time
 from time import ctime
+import _thread
 
 mapperHandler = None
 
@@ -27,31 +28,27 @@ def listen_mapper():
 	    print('connect from ', addr)
 	    mapperHandler = tcpClientSock
 
+		#maybe need except solving
 	    while True:
-	    	try:
 	            data=tcpClientSock.recv(BUFSIZ)
-	        except Exception,e:   
-	            print "exception : ",e :
-	            tcpClientSock.close()
-	            break
 
-	    
-		mapperHandler = None
-		tcpClientSock.close()
+
+		# mapperHandler = None
+		# tcpClientSock.close()
 	sock.close()
 
 # true start
-thread.start_new_thread(listen_mapper, ())  
+_thread.start_new_thread(listen_mapper, ())
 
 while True:
 	global mapperHandler
 	if mapperHandler != None :
-		print 'fire'
+		print('fire')
 		mapperHandler.send(('[%s]' %(ctime())).encode('utf-8'))
 	else :
-		print 'nonono'
+		print('nonono')
 
-	print 'waiting'
+	print('waiting')
 	time.sleep(4)
 
 # 将正则表达式编译成Pattern对象
@@ -71,8 +68,9 @@ b = "->  Loc:    Broad Trail [402,155] in northern two Lucentium"
 
 match = pattern.match(a)
 if match:
-    print 'fire'
+    print('fire') #'fire'
     # 使用Match获得分组信息
-    print match.group(1),match.group(2)
+    print(match.group(1),match.group(2))
 
-print '>>>>>>>'
+print( '>>>>>>>')
+

@@ -26,35 +26,35 @@ The following set of control codes will be sent by the game server to the client
 
 CODE
 nr     opening tag     closing tag     Description     Example
-00     ESC < 00     ESC > 00     Closes any open control code tags and resets text properties and output into default window     ESC<00ESC>00
-05     ESC < 05     ESC > 05     Signifies that the connection was successful     ESC<05ESC>05
-06     ESC < 06     ESC > 06     Signifies that the connection failed with the reason given as arg     ESC<06Incorrect password.ESC>06
-10     ESC < 10     ESC > 10     Defines the output to be a message of type <arg>     ESC<10chan_salesESC|Test outputESC>10
-11     ESC < 11     ESC > 11     Clears the active screen     ESC<11ESC>11
-20     ESC < 20     ESC > 20     Sets the text foreground color to be the RGB value specified as argument     ESC<2000FFFFESC|TestESC>20
-21     ESC < 21     ESC > 21     Sets the text background color to be the RGB value specified as argument     ESC<21FF0000ESC|TestESC>21
-22     ESC < 22     ESC > 22     Sets the text output to bold mode     ESC<22TestESC>22
-23     ESC < 23     ESC > 23     Sets the text output in italic     ESC<23TestESC>23
-24     ESC < 24     ESC > 24     Sets the text output as underlined     ESC<24TestESC>24
-25     ESC < 25     ESC > 25     Sets the text output to blink     ESC<25Text is blinkingESC>25
-29     ESC < 29     ESC > 29     Resets the text properties (reverts back to default colors)     ESC<29ESC>29
-30     ESC < 30     ESC > 30     Sets the text to be a hyperlink to the link provides as argument     ESC<30http://www.bat.orgESC|BatMUD's homepageESC>30
-31     ESC < 31     ESC > 31     Sets the text to be an in-game link as provided by argument     ESC<31northESC|Go northESC>31
-40     ESC < 40     ESC > 40     Clears spell/skill progress indicator     ESC<40ESC>40
-41     ESC < 41     ESC > 41     Relays the spell action status. Format:%s %d (spell rounds_left(1..n),0=unknown)     ESC<41magic_missile 2ESC>41
-42     ESC < 42     ESC > 42     Relays the skill action status. Format:%s %d (skill rounds_left(1..n),0=unknown)     ESC<42bladed_fury 5ESC>42
-50     ESC < 50     ESC > 50     Relays the full player health status. Format:%d %d %d %d %d %d (hp hpmax sp spmax ep epmax)     ESC<50100 200 200 250 300 350ESC>50
-51     ESC < 51     ESC > 51     Relays the partial player health status. Format:%d %d %d (hp sp ep)     ESC<51100 200 200ESC>51
-52     ESC < 52     ESC > 52     Relays the player name, surname, race, level, gender(0/1/2 neuter/male/female) and experience. Format:%s %s %s %d %d %d     ESC<52Ulath Pulath coder 100 1 1345323ESC>52
-53     ESC < 53     ESC > 53     Relays the player free experience. Format:%d     ESC<531345323ESC>53
-54     ESC < 54     ESC > 54     Relays the player status. Format:%d %d %d(unconscious stunned dead)     ESC<540 0 0ESC>54
-60     ESC < 60     ESC > 60     Relays the player location. Format:%s %s %d %s %d %d %d(name race gender continent X Y Z)     ESC<60ulath coder 1 laenor 5100 5200 0ESC>60
-61     ESC < 61     ESC > 61     Relays party location information. '0' means empty. Format:%s %d %d(player X Y)     ESC<61ulath 1 1ESC>61
-62     ESC < 62     ESC > 62     Relays a full party status update. Format: %s:<player> %s:<race> %d:<gender> %d:<level> %d:<hp> %d:<maxhp> %d:<sp> %d:<maxsp> %d:<ep> %d:<maxep> %s:<status_flag> %d:<party_exp> %d:<total_party_exp> %d:<party_length_in_seconds> %s:<party_creation_time>     See examples below
-63     ESC < 63     ESC > 63     Notifies that a player has left the party. Format: %s:<player>     ESC<63ulathESC>63
-64     ESC < 64     ESC > 64     Relays status affecting spell information. Each effect has its own message. effect string is '_' padded. A time left=0 means that the effect has stopped. A item left=-1 means that the spell works on some other variable than time. Format: %s:<effect> %d:<time left in seconds>     ESC<64lay_on_hands 120ESC>64
-70     ESC < 70     ESC > 70     Relays the set target information, 5% accuracy. '0 0' means that there is no target, and any formed targets should be cleared. Format: %s:<target> %d:<percentage>     ESC<70evilmonster 45ESC>70
-99     ESC < 99     ESC > 99     Custom information relay. Format:%d %s %d (format (0=string, 1=int), type, data)     ESC<991 dex 300ESC>99
+00     ESC < 00     ESC > 00     恢复默认。Closes any open control code tags and resets text properties and output into default window.恢复默认     ESC<00ESC>00
+05     ESC < 05     ESC > 05     连接成功。Signifies that the connection was successful     ESC<05ESC>05
+06     ESC < 06     ESC > 06     连接失败及原因。Signifies that the connection failed with the reason given as arg     ESC<06Incorrect password.ESC>06
+10     ESC < 10     ESC > 10     特定类型的信息。Defines the output to be a message of type <arg> 。特定类型的信息    ESC<10chan_salesESC|Test outputESC>10
+11     ESC < 11     ESC > 11     清屏。Clears the active screen     ESC<11ESC>11
+20     ESC < 20     ESC > 20     设置前景颜色。Sets the text foreground color to be the RGB value specified as argument     ESC<2000FFFFESC|TestESC>20
+21     ESC < 21     ESC > 21     设置后景颜色。Sets the text background color to be the RGB value specified as argument     ESC<21FF0000ESC|TestESC>21
+22     ESC < 22     ESC > 22     设置粗体。Sets the text output to bold mode     ESC<22TestESC>22
+23     ESC < 23     ESC > 23     设置斜体。Sets the text output in italic     ESC<23TestESC>23
+24     ESC < 24     ESC > 24     设置下划线。Sets the text output as underlined     ESC<24TestESC>24
+25     ESC < 25     ESC > 25     设置闪烁。Sets the text output to blink     ESC<25Text is blinkingESC>25
+29     ESC < 29     ESC > 29     设置默认颜色。Resets the text properties (reverts back to default colors)     ESC<29ESC>29
+30     ESC < 30     ESC > 30     超链接设置。Sets the text to be a hyperlink to the link provides as argument     ESC<30http://www.bat.orgESC|BatMUD's homepageESC>30
+31     ESC < 31     ESC > 31     游戏内连接。在客户端可以直接点击的那种。Sets the text to be an in-game link as provided by argument     ESC<31northESC|Go northESC>31
+40     ESC < 40     ESC > 40     清除进度提示。Clears spell/skill progress indicator     ESC<40ESC>40
+41     ESC < 41     ESC > 41     法术进度。Relays the spell action status. Format:%s %d (spell rounds_left(1..n),0=unknown)     ESC<41magic_missile 2ESC>41
+42     ESC < 42     ESC > 42     技能进度。Relays the skill action status. Format:%s %d (skill rounds_left(1..n),0=unknown)     ESC<42bladed_fury 5ESC>42
+50     ESC < 50     ESC > 50     角色全部状态。Relays the full player health status. Format:%d %d %d %d %d %d (hp hpmax sp spmax ep epmax)     ESC<50100 200 200 250 300 350ESC>50
+51     ESC < 51     ESC > 51     角色部分状态更新。Relays the partial player health status. Format:%d %d %d (hp sp ep)     ESC<51100 200 200ESC>51
+52     ESC < 52     ESC > 52     角色基本信息。Relays the player name, surname, race, level, gender(0/1/2 neuter/male/female) and experience. Format:%s %s %s %d %d %d     ESC<52Ulath Pulath coder 100 1 1345323ESC>52
+53     ESC < 53     ESC > 53     free经验.Relays the player free experience. Format:%d     ESC<531345323ESC>53
+54     ESC < 54     ESC > 54     状态，uncon、stun、dead。用于图形化的显示。Relays the player status. Format:%d %d %d(unconscious stunned dead)     ESC<540 0 0ESC>54
+60     ESC < 60     ESC > 60     角色位置。大地图显示。Relays the player location. Format:%s %s %d %s %d %d %d(name race gender continent X Y Z)     ESC<60ulath coder 1 laenor 5100 5200 0ESC>60
+61     ESC < 61     ESC > 61     团队位置信息。Relays party location information. '0' means empty. Format:%s %d %d(player X Y)     ESC<61ulath 1 1ESC>61
+62     ESC < 62     ESC > 62     团队全部信息更新。团队窗口更新信息。Relays a full party status update. Format: %s:<player> %s:<race> %d:<gender> %d:<level> %d:<hp> %d:<maxhp> %d:<sp> %d:<maxsp> %d:<ep> %d:<maxep> %s:<status_flag> %d:<party_exp> %d:<total_party_exp> %d:<party_length_in_seconds> %s:<party_creation_time>     See examples below
+63     ESC < 63     ESC > 63     离队通知。Notifies that a player has left the party. Format: %s:<player>     ESC<63ulathESC>63
+64     ESC < 64     ESC > 64     法术时间提示。Relays status affecting spell information. Each effect has its own message. effect string is '_' padded. A time left=0 means that the effect has stopped. A item left=-1 means that the spell works on some other variable than time. Format: %s:<effect> %d:<time left in seconds>     ESC<64lay_on_hands 120ESC>64
+70     ESC < 70     ESC > 70     目标信息提示。Relays the set target information, 5% accuracy. '0 0' means that there is no target, and any formed targets should be cleared. Format: %s:<target> %d:<percentage>     ESC<70evilmonster 45ESC>70
+99     ESC < 99     ESC > 99     统一变量显示。Custom information relay. Format:%d %s %d (format (0=string, 1=int), type, data)     ESC<991 dex 300ESC>99
 
 
 Some examples:

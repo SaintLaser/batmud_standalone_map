@@ -17,7 +17,7 @@ buffer_size = 4096
 delay = 0.0001
 
 ### bat服务器配置
-forward_to = ('batmud.bat.org', 23)
+forward_to = ('batmud.bat.org', 2023)
 
 class RemoteParser:
     def parse(self, data):
@@ -38,8 +38,8 @@ class Forward:
         try:
             self.forward.connect((host, port))
             return self.forward
-        except Exception, e:
-            print e
+        except Exception as e:
+            print( e )
             return False
 
 class TheServer:
@@ -51,11 +51,12 @@ class TheServer:
         self.server = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
         self.server.setsockopt(socket.SOL_SOCKET, socket.SO_REUSEADDR, 1)
         self.server.bind((host, port))
-        self.server.listen(200)
+        #wild 此处设置成1，本地使用无需更多的连接
+        self.server.listen(1)
 
     def main_loop(self):
         self.input_list.append(self.server)
-        while 1:
+        while True:
             time.sleep(delay)
             ss = select.select
             inputready, outputready, exceptready = ss(self.input_list, [], [])
@@ -71,7 +72,7 @@ class TheServer:
                         break
                     else:
                         self.on_recv()
-                except socket.error, ex:
+                except socket.error as ex:
                     self.on_drop()
 
                 
@@ -80,7 +81,7 @@ class TheServer:
         forward = Forward().start(forward_to[0], forward_to[1])
         clientsock, clientaddr = self.server.accept()
         if forward:
-            print clientaddr, "has connected"
+            print(clientaddr, "has connected")
             self.input_list.append(clientsock)
             self.input_list.append(forward)
             self.channel[clientsock] = forward
@@ -90,14 +91,14 @@ class TheServer:
             self.parser[forward] = LocalParser(options)
 
             # Enable batclient private protocol
-            forward.send("\033bc 1\n")
+            forward.send(bytes("\033bc 1\n",'utf-8'))
         else:
-            print "Can't establish connection with remote server.",
-            print "Closing connection with client side", clientaddr
+            print("Can't establish connection with remote server.")
+            print("Closing connection with client side", clientaddr)
             clientsock.close()
 
     def on_close(self):
-        print self.s.getpeername(), "has disconnected"
+        print(self.s.getpeername(), "has disconnected")
         out = self.channel[self.s]
         # close the connection with client
         self.channel[out].close()  # equivalent to do self.s.close()
@@ -114,9 +115,15 @@ class TheServer:
 
     def on_recv(self):
         data = self.data
+        print( 'receive: ' , type(data), data)
         # here we can parse and/or modify the data before send forward
         new_data = self.parser[self.s].parse(data)
-        self.channel[self.s].sendall(new_data)
+        print( 'after parse: ' , type(new_data), new_data)
+        if(  isinstance( new_data, str) ):
+            self.channel[self.s].sendall(bytes(new_data,'utf-8'))
+        else:
+            self.channel[self.s].sendall(new_data)
+
 
 
 if __name__ == '__main__':
@@ -125,16 +132,16 @@ if __name__ == '__main__':
     ################
     port = 9999
     ##待解析的code列表
-    codes = ["50", "52", "53", "54", "60", "61", "62", "63", "64", "70"]
+    codes = [b"50", b"52", b"53", b"54", b"60", b"61", b"62", b"63", b"64", b"70"]
     enable_color = True
     enable_combat_plugin = True
 
     try:
         options = bcprotocol.Options(codes, enable_color, enable_combat_plugin)
         server = TheServer('', port)
-        print "Bat proxy is running at {}:{}".format("localhost", port)
+        print("Bat proxy is running at {}:{}".format("localhost", port))
         server.main_loop()
     except KeyboardInterrupt:
-        print "Ctrl C - Stopping server"
+        print("Ctrl C - Stopping server")
 
 sys.exit(1)
