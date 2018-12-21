@@ -67,8 +67,8 @@ app = Flask(__name__)
 sockets = Sockets(app)
 websocket_port=10001
 
-# 地址解析
-pattern=re.compile(pattern=r'.*?Loc:.*?\[(\d+,\d+)\] in .*? \b((?:Lucentium|Desolathya|Rothikgen|Laenor|Furnachia)).*?', flags=re.S)
+# 全球坐标解析
+global_location_pattern=re.compile(pattern=r'.*?Loc:.*?\[(\d+,\d+)\] in .*? \b((?:Lucentium|Desolathya|Rothikgen|Laenor|Furnachia)).*?', flags=re.S)
 
 ## 监听的websocket地址
 @sockets.route('/location')
@@ -144,7 +144,8 @@ class Parser:
     def process(self, data):
 
         print('solving ',type(data),data)
-        print('solving ',data.hex())
+
+
         # idx = 0;
         for char in data:
             # idx = idx + 1
@@ -167,7 +168,7 @@ class Parser:
                     self.expression.content = b''
                     self.stats = S_TEXT
                 else:
-                    self.do_with_text( bytes([33,char]))  # 上一个esc是普通的esc
+                    self.do_with_text( bytes([27,char]))  # 上一个esc是普通的esc
                     self.stats = S_TEXT
                 continue
 
@@ -176,19 +177,19 @@ class Parser:
                     self.tmp_code += bytes([char])
                     self.stats = S_OPEN_CODE
                 else:
-                    self.do_with_text(bytes([33, ord("<"), char]))
+                    self.do_with_text(bytes([27, ord("<"), char])) #此时已经缓存了两个了ESC<
                     self.stats = S_TEXT
                 continue
 
-            if self.stats == S_OPEN_CODE:
-                if self.is_valid_code(char):
+            if self.stats == S_OPEN_CODE: #second open code
+                if self.is_valid_code(char): #true start
                     if self.expression:
                         self.stack.append(self.expression)
                     self.expression = Expression()
                     self.expression.code += self.tmp_code + bytes([char])
                     self.stats = S_TEXT
                 else:
-                    self.do_with_text("\033" + "<" + self.tmp_code + char)
+                    self.do_with_text(bytes([27, ord("<"), self.tmp_code, char]))
                     self.stats = S_TEXT
                 self.tmp_code = b''
                 continue
@@ -198,7 +199,7 @@ class Parser:
                     self.tmp_code += bytes([char])
                     self.stats = S_CLOSE_CODE
                 else:
-                    self.do_with_text( bytes([27,ord('>'),char])) #"\033" + ">" + char)
+                    self.do_with_text(bytes([27, ord('>'), char])) #"\033" + ">" + char)
                     self.stats = S_TEXT
                 continue
             
@@ -215,15 +216,15 @@ class Parser:
                         self.do_with_text(tmp_content)
                         self.stats = S_TEXT
                 else:
-                    self.do_with_text( bytes([27, ord('>')] + self.tmp_code + bytes([char])) )
+                    self.do_with_text(bytes([27, ord('>')] + bytes[self.tmp_code] + bytes([char])))
                     self.stats = S_TEXT
                 self.tmp_code = b''
                 continue
 
             if self.stats == S_AFTER_TEN:
-                if char == "\377":
+                if char == "\377": #?
                     self.stats = S_IAC
-                elif char == "\033":
+                elif char == 27: # char == "\033":
                     self.expression = None
                     self.stats = S_ESC
                 else:
@@ -233,7 +234,7 @@ class Parser:
                 continue
 
             if self.stats == S_IAC:
-                if char == "\371":
+                if char == "\371": # ?
                     self.output += self.parse_exp(self.expression)
                     self.expression = None
                     self.stats = S_TEXT
@@ -243,52 +244,70 @@ class Parser:
                     self.stats = S_TEXT
                 continue
 
+
+        ##  to find
+
         return self.output
 
     def parse_exp(self, exp):
 
         global mapperHandler
 
-        if exp.code in self.options.codes or exp.code in ["05", "06", "11", "29", "40", "41", "42"]:
-            return ""
+        ##这些类型不分析 但是41 42可能会有用？
+        if exp.code in self.options.codes or exp.code in [b"05", b"06", b"11", b"29", b"40", b"41", b"42"]:
+            return b""
 
-        if exp.code in ["22", "23", "24", "25", "31"]:
+        ##粗体、斜体、闪烁、连接、游戏内连接，不做处理
+        if exp.code in [b"22", b"23", b"24", b"25", b"31"]:
             return exp.content
 
-        if exp.code == "10":
+        ##特定类型的信息。Defines the output to be a message of type <arg> 。特定类型的信息    ESC<10chan_salesESC|Test outputESC>10
+        ## 更多的处理将在这里
+        if exp.code == b"10":
 
             ## 查看是否能拿到realm map坐标
-            match = pattern.match(exp.content)
+            match = global_location_pattern.match(exp.content.decode("utf-8"))
             if match and (len(ws_handlers) > 0):
-                # 向页面发送坐标
+                # 向页面发送坐标 2 大洲， 1 坐标
                 print('[realm map]send location ', match.group(2)+ ","+match.group(1))
-                ws_handlers[0].send(match.group(2)+ ","+match.group(1))
+                ws_handlers[0].send(match.group(2) + "," + match.group(1))
 
+            ##战斗信息
             if exp.argu == "spec_battle" and self.options.enable_combat_plugin:
-                return "[10-spec_battle]" + exp.content.replace("\n", " ").strip() + "\r\n"
+                # return b"[10-spec_battle]" + exp.content.replace("\n", " ").strip() + "\r\n"
+                return b"[10-spec_battle]" + exp.content + b"\r\n"
             elif exp.argu == "spec_prompt":
-                return exp.content.strip() +"\r\n"
+                return b"[10-spec_prompt]" + exp.content + b"\r\n"
             elif exp.content == "NoMapSupport":
-                return ""
+                return b''
             else:
-                return exp.content.strip() +"\r\n"
-               
-        if exp.code == "20" or exp.code == "21":
+                return exp.content + b"\r\n"
+
+        # 颜色处理部分
+        if exp.code == b"20" or exp.code == b"21":
             if not self.options.enable_color:
                 return exp.content
             elif exp.argu:
                 rgb = exp.argu.zfill(6) if len(exp.argu) < 6 else exp.argu
                 # fix some invalid RGB color from server
                 if len(rgb) > 6:
-                    rgb = ''.join(c for c in rgb if c.isdigit())                
-                short, _ = colortrans.rgb2short(rgb)
-                return "\033[{}8;5;{}m{}\033[0m".format(3 if exp.code == "20" else 4, short, exp.content)
+                    rgb = ''.join(c for c in rgb if c.isdigit())
+                # print('rgb ==== rgb   ',str(type(rgb)), rgb)
+                short, _ = colortrans.rgb2short(rgb.decode('utf8'))
+                # print('rgb ==== short ',str(type(short)), short)
+                # print('get color: short=',short, exp.content.decode('utf-8'))
+                # return "\033[{}8;5;{}m{}\033[0m".format(3 if exp.code == "20" else 4, short, exp.content)
+                fg = '3' if exp.code == b"20" else '4' ## 前景还是后景
+                return b'\033[' + fg.encode("utf-8") + b'8;5;' + str(short).encode('utf-8') \
+                       + b'm' + exp.content + b'\033[0m'
 
-        if exp.code == "99":
-            if exp.content.startswith("BAT_MAPPER;;REALM_MAP"):
-                return "Exited to realm map.\r\n"
-            elif exp.content.startswith("BAT_MAPPER;;"):
-                room = exp.content.split(";;")
+        if exp.code == b"99":
+            if exp.content.decode('utf-8').startswith("BAT_MAPPER;;REALM_MAP"):
+                return b"Exited to realm map.\r\n"
+            elif exp.content.decode('utf-8').startswith("BAT_MAPPER;;"):
+                room = exp.content.decode('utf-8').split(";;")
+
+                print("[mapper] get: " + ";;".join(room[1:]) + "@@\n")
 
                 ##param roomInfo 格式示例
                 ##crimson guild;;$apr1$dF!!_X#W$eA6mBDF.Y93f8W7tObZGP1;;west;;1;;Hallway east;;The hallway continues south-north here.  You catch the glint of light on steel from the eastern doorway.  Torchlight falls from sconces set high in the  walls. ;;east,north,south;;@@
@@ -300,11 +319,14 @@ class Parser:
                     mapperHandler.send(";;".join(room[1:]) + "@@\n")
 
                 ##
-                return ""
+                return b''
                 ## no need to return
                 #return "[-{}-]{}\r\n".format(exp.code, ";;".join(room[1:5] + [room[7]]))
 
-        return "[-{}-]{}\r\n".format(exp.code, exp.content)
+        # return "[-{}-]{}\r\n".format(exp.code, exp.content)
+        # return b"[-" + exp.code.decode('utf-8') + b"-]" + exp.content + b"\r\n"
+        bb = b'[-' + exp.code + b"-]" + exp.content + b"\r\n"
+        return b2
 
 
 if __name__ == '__main__':

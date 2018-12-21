@@ -30,8 +30,12 @@ public class GuiDataPersister {
         FileOutputStream fileOutputStream;
         try {
             fileOutputStream = new FileOutputStream( getFile( baseDir ) );
+
+
+
             ObjectOutputStream objectOutputStream = new ObjectOutputStream( fileOutputStream );
             objectOutputStream.writeObject( data );
+
             fileOutputStream.close();
         } catch (IOException e) {
             System.out.println( e );

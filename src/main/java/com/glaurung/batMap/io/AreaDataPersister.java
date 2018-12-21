@@ -12,6 +12,7 @@ import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
+import com.alibaba.fastjson.JSON;
 import org.apache.commons.io.FileUtils;
 import org.apache.commons.io.FilenameUtils;
 
@@ -37,8 +38,17 @@ public class AreaDataPersister {
 
     private static void saveData( AreaSaveObject saveObject ) throws IOException {
         FileOutputStream fileOutputStream = new FileOutputStream( new File( saveObject.getFileName() ) );
-        ObjectOutputStream objectOutputStream = new ObjectOutputStream( fileOutputStream );
-        objectOutputStream.writeObject( saveObject );
+
+//        ObjectOutputStream objectOutputStream = new ObjectOutputStream( fileOutputStream );
+//        objectOutputStream.writeObject( saveObject );
+
+        String json = JSON.toJSONString(saveObject);
+        fileOutputStream.write(json.getBytes("UTF-8"));
+        fileOutputStream.flush();
+
+        System.out.println("to save");
+        System.out.println(json);
+
         fileOutputStream.close();
 
     }
@@ -47,11 +57,24 @@ public class AreaDataPersister {
     public static AreaSaveObject loadData( String basedir, String areaName ) throws IOException, ClassNotFoundException {
 
         File dataFile = new File( getFileNameFrom( basedir, areaName ) );
-//		System.out.println("\n\n+ndataFileForLoading\n\n\n"+dataFile);
         FileInputStream fileInputStream = new FileInputStream( dataFile );
-        ObjectInputStream objectInputStream = new ObjectInputStream( fileInputStream );
-        AreaSaveObject saveObject = (AreaSaveObject) objectInputStream.readObject();
-        return saveObject;
+
+        byte[] data = new byte[fileInputStream.available()];
+        fileInputStream.read(data);
+        String json = new String(data,"UTF-8");
+        AreaSaveObject areaSaveObject = (AreaSaveObject)JSON.parse(json);
+
+
+        System.out.println("to load");
+        System.out.println(json);
+
+
+//        fileInputStream.read()
+
+//        ObjectInputStream objectInputStream = new ObjectInputStream( fileInputStream );
+//        AreaSaveObject saveObject = (AreaSaveObject) objectInputStream.readObject();
+
+        return areaSaveObject;
     }
 
     public static List<String> listAreaNames( String basedir ) {

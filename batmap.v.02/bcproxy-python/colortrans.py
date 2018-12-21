@@ -332,7 +332,8 @@ def rgb2short(rgb):
     >>> rgb2short('0DADD6') # vimeo logo
     ('38', '00afd7')
     """
-    rgb = _strip_hash(rgb)
+    #wind dedddd 1220
+    # rgb = _strip_hash(rgb)
     incs = (0x00, 0x5f, 0x87, 0xaf, 0xd7, 0xff)
     # Break 6-char RGB code into 3 integer vals.
     parts = [ int(h, 16) for h in re.split(r'(..)(..)(..)', rgb)[1:4] ]

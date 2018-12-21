@@ -115,14 +115,15 @@ class TheServer:
 
     def on_recv(self):
         data = self.data
-        print( 'receive: ' , type(data), data)
+        # print( 'receive: ' , type(data), data)
         # here we can parse and/or modify the data before send forward
         new_data = self.parser[self.s].parse(data)
-        print( 'after parse: ' , type(new_data), new_data)
+        print( 'after parse: ', type(new_data), new_data)
         if(  isinstance( new_data, str) ):
             self.channel[self.s].sendall(bytes(new_data,'utf-8'))
         else:
             self.channel[self.s].sendall(new_data)
+
 
 
 
